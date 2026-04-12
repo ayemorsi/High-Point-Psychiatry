@@ -23,6 +23,12 @@
   },
   "registries": {
     "@magicui": "https://magicui.design/r/{name}",
-    "@aceternity": "https://ui.aceternity.com/registry/{name}.json"
+    "@aceternity": "https://ui.aceternity.com/registry/{name}.json",
+    "@shadcnblocks": {
+      "url": "https://shadcnblocks.com/r/{name}",
+      "headers": {
+        "Authorization": "Bearer sk_live_Y9D0ZXDkcrJS-hpZ7c4H-slJerKO2j_l"
+      }
+    }
   }
 }
