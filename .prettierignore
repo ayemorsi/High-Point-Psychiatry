@@ -1,0 +1,19 @@
+# Build artifacts
+.next/
+.turbo/
+._next/
+. __tmp__/
+. dist/
+. node_modules/
+. target/
+. compiled/
+
+# shadcn UI (registry output; avoid formatter churn)
+src/components/ui/
+src/app/components/ui/
+
+# Other files
+.env*
+.DS_Store
+*.pem
+*.log
