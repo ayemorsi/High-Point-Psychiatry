@@ -3,7 +3,7 @@ import { ArrowLeft, Calendar, Clock } from 'lucide-react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
-import CtaBanner from '@/components/sections/cta-banner';
+import { Cta1 } from '@/components/cta1';
 
 type BlogPost = {
   slug: string;
@@ -375,7 +375,7 @@ export default async function BlogPostPage({
         </div>
       </section>
 
-      <CtaBanner />
+      <Cta1 />
     </>
   );
 }

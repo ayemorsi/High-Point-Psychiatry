@@ -1,9 +1,10 @@
 import type { Metadata } from 'next';
-import { Award, BookOpen, CheckCircle2, Heart, Shield, Users } from 'lucide-react';
-import Link from 'next/link';
+import { Award, CheckCircle2 } from 'lucide-react';
 
-import { Button } from '@/components/ui/button';
-import CtaBanner from '@/components/sections/cta-banner';
+import { Cta1 } from '@/components/cta1';
+import { Feature1 } from '@/components/feature1';
+import { Hero3 } from '@/components/hero3';
+import { Stats5 } from '@/components/stats5';
 
 export const metadata: Metadata = {
   title: 'About Ahmed Morsi, PMHNP-BC',
@@ -39,114 +40,39 @@ const TIMELINE = [
   },
 ];
 
-const VALUES = [
-  {
-    icon: Heart,
-    title: 'Person-Centered Care',
-    desc: 'Every treatment plan is built around you — your goals, your circumstances, your life.',
-  },
-  {
-    icon: Shield,
-    title: 'Trauma-Informed',
-    desc: 'All care is delivered through a trauma-informed lens, prioritizing safety and trust above all.',
-  },
-  {
-    icon: Users,
-    title: 'Community Rooted',
-    desc: 'Born and raised in Flint, Ahmed is deeply committed to the mental health of Genesee County.',
-  },
-  {
-    icon: BookOpen,
-    title: 'Evidence-Based',
-    desc: 'Treatment decisions are grounded in current research, clinical guidelines, and best practices.',
-  },
-];
-
 export default function AboutPage() {
   return (
     <>
-      {/* Hero */}
-      <section className="bg-hero-gradient relative overflow-hidden pt-36 pb-24">
-        <div
-          className="pointer-events-none absolute inset-0 opacity-[0.06]"
-          style={{ backgroundImage: 'radial-gradient(circle at 70% 30%, #76A1C2 0%, transparent 60%)' }}
-        />
-        <div className="container relative z-10 max-w-3xl">
-          <p className="mb-4 text-sm font-semibold uppercase tracking-widest text-[#B1DCFF]">Your Provider</p>
-          <h1 className="font-display mb-6 text-4xl font-medium leading-tight text-white sm:text-5xl lg:text-6xl">
-            Ahmed Morsi,{' '}
-            <span className="italic text-[#B1DCFF]">PMHNP-BC</span>
-          </h1>
-          <p className="text-lg leading-relaxed text-white/70">
-            Board-Certified Psychiatric Mental Health Nurse Practitioner serving
-            Genesee County, Michigan with compassion, expertise, and a deep
-            commitment to community.
-          </p>
-        </div>
-        <div className="pointer-events-none absolute right-0 bottom-0 left-0 h-20 bg-gradient-to-t from-background to-transparent" />
-      </section>
+      <Hero3
+        heading="Ahmed Morsi, PMHNP-BC"
+        description="Board-Certified Psychiatric Mental Health Nurse Practitioner serving Genesee County, Michigan with compassion, expertise, and a deep commitment to community."
+        buttons={{
+          primary: { text: 'Book Appointment', url: '/contact' },
+          secondary: { text: 'View Services', url: '/services' },
+        }}
+        reviews={{
+          count: 50,
+          rating: 5.0,
+          avatars: [
+            { src: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar-1.webp', alt: 'Patient' },
+            { src: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar-2.webp', alt: 'Patient' },
+            { src: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar-3.webp', alt: 'Patient' },
+            { src: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar-4.webp', alt: 'Patient' },
+            { src: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar-5.webp', alt: 'Patient' },
+          ],
+        }}
+      />
 
-      {/* Bio */}
-      <section className="section-padding bg-surface">
-        <div className="container">
-          <div className="grid gap-16 lg:grid-cols-2 lg:items-start">
-            <div>
-              <h2 className="font-display mb-6 text-3xl font-medium text-primary sm:text-4xl">
-                A Provider Who Knows This Community
-              </h2>
-              <div className="space-y-4 text-base leading-relaxed text-muted-foreground">
-                <p>
-                  Ahmed Morsi was born and raised in the Flint and Grand Blanc area of Genesee County.
-                  That connection runs deep — it shapes how he approaches care, how he listens, and why
-                  he chose to plant roots here rather than elsewhere.
-                </p>
-                <p>
-                  With over 14 years in healthcare — more than a decade spent in psychiatric, medical,
-                  and surgical nursing — Ahmed brings a breadth of clinical perspective that informs
-                  every patient encounter. He understands that mental health intersects with physical
-                  health, life circumstances, relationships, and community.
-                </p>
-                <p>
-                  After earning his MSN and Post-Master PMHNP Certificate from Herzing University,
-                  Ahmed achieved national board certification. He founded High Point Psychiatry to
-                  bring high-quality, independent psychiatric care to Michigan — without the long waits
-                  and impersonal systems that too often define mental health access.
-                </p>
-                <p>
-                  Ahmed&apos;s approach blends evidence-based medication management with supportive
-                  psychotherapy, CBT techniques, and trauma-informed principles. He believes the
-                  provider-patient relationship is the foundation of all effective treatment.
-                </p>
-              </div>
-              <div className="mt-10 flex flex-wrap gap-4">
-                <Button asChild className="rounded-full bg-primary px-8 font-semibold text-white shadow-soft hover:bg-[#031636]">
-                  <Link href="/contact">Book an Appointment</Link>
-                </Button>
-                <Button asChild variant="outline" className="rounded-full border-[rgba(26,43,76,0.2)] px-8 font-semibold text-primary hover:bg-surface-low">
-                  <Link href="/services">View Services</Link>
-                </Button>
-              </div>
-            </div>
+      <Feature1
+        title="A Provider Who Knows This Community"
+        description="Ahmed Morsi was born and raised in the Flint and Grand Blanc area of Genesee County. With over 14 years in healthcare — more than a decade in psychiatric, medical, and surgical nursing — Ahmed brings clinical breadth that informs every patient encounter. After earning his MSN and PMHNP-BC certification from Herzing University, he founded High Point Psychiatry to bring high-quality, independent psychiatric care to Michigan — without the long waits that too often define mental health access. His approach blends evidence-based medication management with supportive psychotherapy, CBT techniques, and trauma-informed principles."
+        imageSrc="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-1.svg"
+        imageAlt="Ahmed Morsi, PMHNP-BC — High Point Psychiatry"
+        buttonPrimary={{ text: 'Book an Appointment', href: '/contact' }}
+        buttonSecondary={{ text: 'View Services', href: '/services' }}
+      />
 
-            {/* Values grid */}
-            <div className="grid grid-cols-2 gap-4">
-              {VALUES.map((v) => {
-                const Icon = v.icon;
-                return (
-                  <div
-                    key={v.title}
-                    className="rounded-2xl bg-surface-lowest p-6 shadow-card border border-[rgba(26,43,76,0.06)]"
-                  >
-                    <Icon className="mb-3 size-6 text-secondary" />
-                    <h3 className="mb-2 text-sm font-semibold text-primary">{v.title}</h3>
-                    <p className="text-xs leading-relaxed text-muted-foreground">{v.desc}</p>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-      </section>
+      <Stats5 />
 
       {/* Timeline */}
       <section className="section-padding bg-surface-low">
@@ -203,7 +129,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <CtaBanner />
+      <Cta1 />
     </>
   );
 }

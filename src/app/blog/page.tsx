@@ -2,6 +2,9 @@ import type { Metadata } from 'next';
 import { ArrowRight, Calendar } from 'lucide-react';
 import Link from 'next/link';
 
+import { Cta1 } from '@/components/cta1';
+import { Hero3 } from '@/components/hero3';
+
 export const metadata: Metadata = {
   title: 'Mental Health Blog',
   description:
@@ -77,25 +80,25 @@ const CATEGORY_COLORS: Record<string, string> = {
 export default function BlogPage() {
   return (
     <>
-      {/* Hero */}
-      <section className="bg-hero-gradient relative overflow-hidden pt-36 pb-24">
-        <div
-          className="pointer-events-none absolute inset-0 opacity-[0.06]"
-          style={{ backgroundImage: 'radial-gradient(circle at 70% 30%, #76A1C2 0%, transparent 60%)' }}
-        />
-        <div className="container relative z-10 max-w-3xl">
-          <p className="mb-4 text-sm font-semibold uppercase tracking-widest text-[#B1DCFF]">Resources</p>
-          <h1 className="font-display mb-6 text-4xl font-medium leading-tight text-white sm:text-5xl lg:text-6xl">
-            Mental Health{' '}
-            <span className="italic text-[#B1DCFF]">Insights</span>
-          </h1>
-          <p className="text-lg leading-relaxed text-white/70">
-            Practical information about psychiatric care, mental health conditions,
-            and wellness — from Ahmed Morsi, PMHNP-BC at High Point Psychiatry.
-          </p>
-        </div>
-        <div className="pointer-events-none absolute right-0 bottom-0 left-0 h-20 bg-gradient-to-t from-background to-transparent" />
-      </section>
+      <Hero3
+        heading="Mental Health Insights"
+        description="Practical information about psychiatric care, mental health conditions, and wellness — from Ahmed Morsi, PMHNP-BC at High Point Psychiatry."
+        buttons={{
+          primary: { text: 'Book Appointment', url: '/contact' },
+          secondary: { text: 'Our Services', url: '/services' },
+        }}
+        reviews={{
+          count: 50,
+          rating: 5.0,
+          avatars: [
+            { src: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar-1.webp', alt: 'Patient' },
+            { src: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar-2.webp', alt: 'Patient' },
+            { src: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar-3.webp', alt: 'Patient' },
+            { src: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar-4.webp', alt: 'Patient' },
+            { src: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar-5.webp', alt: 'Patient' },
+          ],
+        }}
+      />
 
       {/* Blog grid */}
       <section className="section-padding bg-surface">
@@ -140,6 +143,8 @@ export default function BlogPage() {
           </div>
         </div>
       </section>
+
+      <Cta1 />
     </>
   );
 }

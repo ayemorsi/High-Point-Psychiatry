@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
 import { Button } from '@/components/ui/button';
-import CtaBanner from '@/components/sections/cta-banner';
+import { Cta1 } from '@/components/cta1';
 import { getAllServiceSlugs, getService } from '@/lib/get-service';
 
 export async function generateStaticParams() {
@@ -104,7 +104,7 @@ export default async function ServiceDetailPage({
         </div>
       </section>
 
-      <CtaBanner />
+      <Cta1 />
     </>
   );
 }
