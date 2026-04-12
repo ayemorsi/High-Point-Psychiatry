@@ -1,72 +1,72 @@
-import { Avatar, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
 const testimonials = [
   {
-    name: "Sarah Chen",
-    role: "CEO & Founder",
+    name: "Flint Patient",
+    role: "Genesee County, MI",
     avatar:
       "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar/avatar1.webp",
     content:
-      "This component library has transformed how we build products. We shipped our entire dashboard in half the time it would have taken otherwise.",
+      "Ahmed truly listens. After years of struggling with anxiety, I finally have a medication plan that works. The whole process from scheduling to follow-up has been seamless and professional.",
   },
   {
-    name: "Marcus Rodriguez",
-    role: "CTO",
+    name: "Grand Blanc Patient",
+    role: "Genesee County, MI",
     avatar:
       "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar/avatar2.webp",
     content:
-      "The attention to accessibility and performance is impressive. Our Lighthouse scores improved significantly after adopting these components.",
+      "I was hesitant about telehealth but the experience was better than I expected. Ahmed is thorough, compassionate, and actually explains everything. I feel heard for the first time in years.",
   },
   {
-    name: "Emily Watson",
-    role: "Head of Product",
+    name: "Burton Patient",
+    role: "Genesee County, MI",
     avatar:
       "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar/avatar3.webp",
     content:
-      "Finally, a design system that developers actually want to use. The documentation is clear, the components are flexible, and the defaults are sensible. It's rare to find all three.",
+      "Getting diagnosed with ADHD as an adult changed my life. Ahmed took my concerns seriously and walked me through every step. My productivity and relationships have improved dramatically.",
   },
   {
-    name: "David Kim",
-    role: "Tech Lead",
+    name: "Flushing Patient",
+    role: "Genesee County, MI",
     avatar:
       "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar/avatar4.webp",
     content:
-      "We've tried many UI libraries over the years. This one strikes the perfect balance between opinionated defaults and customization flexibility.",
+      "High Point Psychiatry is the most patient-centered practice I've encountered. Ahmed doesn't rush appointments, answers all my questions, and genuinely cares about outcomes.",
   },
   {
-    name: "Rachel Foster",
-    role: "Senior Designer",
+    name: "Davison Patient",
+    role: "Genesee County, MI",
     avatar:
       "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar/avatar5.webp",
     content:
-      "As a designer, I appreciate how closely the components match our Figma designs. The design-to-dev handoff has never been smoother. Every pixel is intentional, and the spacing system makes it easy to maintain consistency across screens. I've worked with many component libraries, but this is the first one where I don't have to constantly override styles.",
+      "The scheduling was easy, the telehealth link worked perfectly, and Ahmed was warm and professional. After struggling with depression for two years, I finally feel like I'm on the right track.",
   },
   {
-    name: "James Mitchell",
-    role: "Full Stack Developer",
+    name: "Swartz Creek Patient",
+    role: "Genesee County, MI",
     avatar:
       "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar/avatar6.webp",
     content:
-      "The TypeScript support is excellent. Autocomplete just works, and I catch errors before they hit production. The DX is top-notch.",
+      "I appreciated that Ahmed spent real time understanding my history before making any recommendations. The medication adjustment he suggested made a noticeable difference within weeks.",
   },
   {
-    name: "Nina Patel",
-    role: "UX Engineer",
+    name: "Mount Morris Patient",
+    role: "Genesee County, MI",
     avatar:
       "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar/avatar7.jpg",
     content:
-      "These components handle edge cases I didn't even know existed. Dark mode, RTL support, keyboard navigation - it's all there out of the box.",
+      "As someone who was nervous about seeing a psychiatric provider, Ahmed made me feel completely at ease. No judgment, just honest, thoughtful care. I recommend him to everyone I know.",
   },
   {
-    name: "Alex Thompson",
-    role: "Engineering Manager",
+    name: "Clio Patient",
+    role: "Genesee County, MI",
     avatar:
       "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar/avatar8.jpg",
     content:
-      "Our team's velocity increased noticeably after adopting this library. Less time on UI boilerplate means more time on business logic.",
+      "The telehealth option is a game changer for those of us who can't easily get to an office. Same quality care, same attentive provider — just from my living room. Worth every bit.",
   },
 ];
 
@@ -89,13 +89,12 @@ const Testimonial1 = ({ className }: Testimonial1Props) => {
     <section className={cn("overflow-hidden border-b pt-32", className)}>
       <div className="container">
         <div className="flex flex-col items-center gap-6">
-          <Badge variant="outline">Testimonials</Badge>
+          <Badge variant="outline">Patient Experiences</Badge>
           <h2 className="text-center text-3xl tracking-tight lg:text-5xl">
-            Meet Our Happy Clients
+            What Our Patients Are Saying
           </h2>
           <p className="text-center text-muted-foreground lg:text-lg">
-            Hear from the teams who have transformed their workflow with our
-            components.
+            Real experiences from patients across Genesee County and Michigan.
           </p>
         </div>
       </div>
@@ -119,16 +118,12 @@ const Testimonial1 = ({ className }: Testimonial1Props) => {
                   <CardFooter className="px-4">
                     <div className="flex gap-3 leading-5">
                       <Avatar className="size-8 rounded-full ring-1 ring-input">
-                        <AvatarImage
-                          src={testimonial.avatar}
-                          alt={testimonial.name}
-                        />
+                        <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
+                        <AvatarFallback>P</AvatarFallback>
                       </Avatar>
                       <div className="text-xs">
                         <p className="font-medium">{testimonial.name}</p>
-                        <p className="text-muted-foreground">
-                          {testimonial.role}
-                        </p>
+                        <p className="text-muted-foreground">{testimonial.role}</p>
                       </div>
                     </div>
                   </CardFooter>
@@ -157,16 +152,12 @@ const Testimonial1 = ({ className }: Testimonial1Props) => {
                   <CardFooter>
                     <div className="flex gap-4 leading-5">
                       <Avatar className="size-9 rounded-full ring-1 ring-input">
-                        <AvatarImage
-                          src={testimonial.avatar}
-                          alt={testimonial.name}
-                        />
+                        <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
+                        <AvatarFallback>P</AvatarFallback>
                       </Avatar>
                       <div className="text-sm">
                         <p className="font-medium">{testimonial.name}</p>
-                        <p className="text-muted-foreground">
-                          {testimonial.role}
-                        </p>
+                        <p className="text-muted-foreground">{testimonial.role}</p>
                       </div>
                     </div>
                   </CardFooter>
@@ -195,16 +186,12 @@ const Testimonial1 = ({ className }: Testimonial1Props) => {
                   <CardFooter>
                     <div className="flex gap-4 leading-5">
                       <Avatar className="size-9 rounded-full ring-1 ring-input">
-                        <AvatarImage
-                          src={testimonial.avatar}
-                          alt={testimonial.name}
-                        />
+                        <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
+                        <AvatarFallback>P</AvatarFallback>
                       </Avatar>
                       <div className="text-sm">
                         <p className="font-medium">{testimonial.name}</p>
-                        <p className="text-muted-foreground">
-                          {testimonial.role}
-                        </p>
+                        <p className="text-muted-foreground">{testimonial.role}</p>
                       </div>
                     </div>
                   </CardFooter>

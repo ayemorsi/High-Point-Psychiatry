@@ -2,8 +2,8 @@ import './globals.css';
 
 import type { Metadata, Viewport } from 'next';
 
-import { Footer } from '@/components/layout/footer';
-import Navbar from '@/components/layout/navbar';
+import { Footer1 } from '@/components/footer1';
+import { Navbar1 } from '@/components/navbar1';
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -52,21 +52,6 @@ export const metadata: Metadata = {
     siteName: 'High Point Psychiatry',
     locale: 'en_US',
     type: 'website',
-    images: [
-      {
-        url: '/og-image.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'High Point Psychiatry — Compassionate Psychiatric Care in Michigan',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'High Point Psychiatry | Flint, MI Psychiatric Care',
-    description:
-      'Board-certified psychiatric mental health nurse practitioner serving Genesee County, Michigan. In-person & telehealth available.',
-    images: ['/og-image.jpg'],
   },
 };
 
@@ -100,10 +85,8 @@ const clinicSchema = {
         'Anxiety Treatment',
         'Depression Treatment',
         'ADHD Evaluation',
-        'OCD Treatment',
       ],
       areaServed: ['Flint, MI', 'Grand Blanc, MI', 'Genesee County, MI', 'Michigan'],
-      image: 'https://highpointpsychiatry.com/images/layout/logo.png',
     },
     {
       '@type': 'Person',
@@ -111,8 +94,6 @@ const clinicSchema = {
       name: 'Ahmed Morsi',
       honorificSuffix: 'PMHNP-BC',
       jobTitle: 'Psychiatric Mental Health Nurse Practitioner',
-      description:
-        'Board-Certified Psychiatric Mental Health Nurse Practitioner (PMHNP-BC) with 14+ years of healthcare experience serving Genesee County, Michigan.',
       worksFor: { '@id': 'https://highpointpsychiatry.com/#clinic' },
       hasCredential: [
         {
@@ -121,19 +102,11 @@ const clinicSchema = {
           name: 'PMHNP-BC',
         },
       ],
-      alumniOf: [
-        { '@type': 'CollegeOrUniversity', name: 'Herzing University' },
-        { '@type': 'CollegeOrUniversity', name: 'University of Michigan–Flint' },
-      ],
     },
   ],
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <head>
@@ -143,16 +116,37 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Newsreader:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap"
           rel="stylesheet"
         />
-      </head>
-      <body className="min-h-screen antialiased">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(clinicSchema) }}
         />
+      </head>
+      <body className="min-h-screen antialiased">
         <div className="flex min-h-screen flex-col">
-          <Navbar />
+          <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-md">
+            <Navbar1
+              logo={{
+                url: '/',
+                src: '/images/layout/logo.svg',
+                alt: 'High Point Psychiatry',
+                title: 'High Point Psychiatry',
+              }}
+              menu={[
+                { title: 'Home', url: '/' },
+                { title: 'Services', url: '/services' },
+                { title: 'About', url: '/about' },
+                { title: 'Insurance', url: '/insurance' },
+                { title: 'Blog', url: '/blog' },
+                { title: 'Contact', url: '/contact' },
+              ]}
+              auth={{
+                login: { title: '(810) 732-8336', url: 'tel:8107328336' },
+                signup: { title: 'Book Appointment', url: '/contact' },
+              }}
+            />
+          </header>
           <main className="w-full flex-1">{children}</main>
-          <Footer />
+          <Footer1 />
         </div>
       </body>
     </html>

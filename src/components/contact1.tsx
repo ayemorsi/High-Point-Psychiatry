@@ -1,7 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Check, LoaderIcon } from "lucide-react";
+import { Check, Clock, LoaderIcon, MapPin, Phone, Video } from "lucide-react";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
@@ -26,15 +26,13 @@ import { cn } from "@/lib/utils";
 
 const contactFormSchema = z.object({
   fullName: z.string().min(1, "Full name is required"),
-  company: z.string().optional(),
   phone: z.string().min(1, "Phone number is required"),
   email: z
     .string()
     .min(1, "Email is required")
     .email("Please enter a valid email"),
-  country: z.string().optional(),
-  companySize: z.string().optional(),
-  referral: z.string().optional(),
+  appointmentType: z.string().optional(),
+  message: z.string().optional(),
 });
 
 type ContactFormData = z.infer<typeof contactFormSchema>;
@@ -54,12 +52,10 @@ const Contact1 = ({ className, onSubmit }: Contact1Props) => {
     reValidateMode: "onSubmit",
     defaultValues: {
       fullName: "",
-      company: "",
       phone: "",
       email: "",
-      country: "",
-      companySize: "",
-      referral: "",
+      appointmentType: "",
+      message: "",
     },
   });
 
@@ -68,7 +64,6 @@ const Contact1 = ({ className, onSubmit }: Contact1Props) => {
       if (onSubmit) {
         await onSubmit(data);
       } else {
-        console.log("Form submitted:", data);
         await new Promise((resolve) => setTimeout(resolve, 1000));
       }
       setIsSubmitted(true);
@@ -78,7 +73,7 @@ const Contact1 = ({ className, onSubmit }: Contact1Props) => {
       setTimeout(() => setIsSubmitted(false), 5000);
     } catch {
       form.setError("root", {
-        message: "Something went wrong. Please try again.",
+        message: "Something went wrong. Please try again or call us directly.",
       });
     }
   };
@@ -88,71 +83,86 @@ const Contact1 = ({ className, onSubmit }: Contact1Props) => {
       <div className="pointer-events-none absolute inset-x-0 -top-20 -bottom-20 bg-[radial-gradient(ellipse_35%_15%_at_40%_55%,hsl(var(--accent))_0%,transparent_100%)] lg:bg-[radial-gradient(ellipse_12%_20%_at_60%_45%,hsl(var(--accent))_0%,transparent_100%)]"></div>
       <div className="pointer-events-none absolute inset-x-0 -top-20 -bottom-20 bg-[radial-gradient(ellipse_35%_20%_at_70%_75%,hsl(var(--accent))_0%,transparent_80%)] lg:bg-[radial-gradient(ellipse_15%_30%_at_70%_65%,hsl(var(--accent))_0%,transparent_80%)]"></div>
       <div className="pointer-events-none absolute inset-x-0 -top-20 -bottom-20 bg-[radial-gradient(hsl(var(--accent-foreground)/0.1)_1px,transparent_1px)] [mask-image:radial-gradient(ellipse_60%_60%_at_65%_50%,#000_0%,transparent_80%)] [background-size:8px_8px]"></div>
+
       <div className="container grid w-full grid-cols-1 gap-x-32 overflow-hidden lg:grid-cols-2">
+        {/* Left: info */}
         <div className="w-full pb-10 md:space-y-10 md:pb-0">
           <div className="space-y-4 md:max-w-[40rem]">
             <h1 className="text-4xl font-medium lg:text-5xl">
-              Book free demo now
+              Book an Appointment
             </h1>
-            <div className="text-muted-foreground md:text-base lg:text-lg lg:leading-7">
-              In non libero bibendum odio pellentesque ullamcorper. Aenean
-              condimentum, dolor commodo pulvinar bibendum.
-            </div>
+            <p className="text-muted-foreground md:text-base lg:text-lg lg:leading-7">
+              We are accepting new patients. Fill out the form and we will reach
+              out within one business day — or call us directly at{" "}
+              <a href="tel:8107328336" className="font-semibold text-primary underline underline-offset-4">
+                (810) 732-8336
+              </a>
+              .
+            </p>
           </div>
+
           <div className="hidden md:block">
-            <div className="space-y-16 pb-20 lg:pb-0">
-              <div className="space-y-6">
-                <div className="mt-16 flex overflow-hidden">
-                  <Avatar className="size-11 border border-border">
-                    <AvatarImage src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar-1.webp" />
-                    <AvatarFallback>SB</AvatarFallback>
-                  </Avatar>
-                  <Avatar className="-ml-4 size-11 border border-border">
-                    <AvatarImage src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar-3.webp" />
-                    <AvatarFallback>RA</AvatarFallback>
-                  </Avatar>
-                  <Avatar className="-ml-4 size-11 border border-border">
-                    <AvatarImage src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar-2.webp" />
-                    <AvatarFallback>JS</AvatarFallback>
-                  </Avatar>
+            <div className="space-y-8 pb-20 pt-10 lg:pb-0">
+              <div className="flex overflow-hidden">
+                <Avatar className="size-11 border border-border">
+                  <AvatarImage src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar-1.webp" />
+                  <AvatarFallback>P</AvatarFallback>
+                </Avatar>
+                <Avatar className="-ml-4 size-11 border border-border">
+                  <AvatarImage src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar-3.webp" />
+                  <AvatarFallback>P</AvatarFallback>
+                </Avatar>
+                <Avatar className="-ml-4 size-11 border border-border">
+                  <AvatarImage src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar-2.webp" />
+                  <AvatarFallback>P</AvatarFallback>
+                </Avatar>
+              </div>
+
+              <div className="space-y-4">
+                <p className="text-sm font-semibold">What to expect:</p>
+                <div className="flex items-start space-x-2.5">
+                  <Check className="mt-0.5 size-5 shrink-0 text-muted-foreground" />
+                  <p className="text-sm">We respond within one business day</p>
                 </div>
-                <div className="space-y-4">
-                  <p className="text-sm font-semibold">What you can expect:</p>
-                  <div className="flex items-center space-x-2.5">
-                    <Check className="size-5 shrink-0 text-muted-foreground" />
-                    <p className="text-sm">
-                      Detailed product presentation tailored to you
-                    </p>
-                  </div>
-                  <div className="flex items-center space-x-2.5">
-                    <Check className="size-5 shrink-0 text-muted-foreground" />
-                    <p className="text-sm">
-                      Consulting on your messaging strategy
-                    </p>
-                  </div>
-                  <div className="flex items-center space-x-2.5">
-                    <Check className="size-5 shrink-0 text-muted-foreground" />
-                    <p className="text-sm">
-                      Answers to all the questions you have
-                    </p>
-                  </div>
+                <div className="flex items-start space-x-2.5">
+                  <Check className="mt-0.5 size-5 shrink-0 text-muted-foreground" />
+                  <p className="text-sm">No referral needed to get started</p>
+                </div>
+                <div className="flex items-start space-x-2.5">
+                  <Check className="mt-0.5 size-5 shrink-0 text-muted-foreground" />
+                  <p className="text-sm">In-person and telehealth appointments available</p>
+                </div>
+                <div className="flex items-start space-x-2.5">
+                  <Check className="mt-0.5 size-5 shrink-0 text-muted-foreground" />
+                  <p className="text-sm">Most major insurance plans accepted</p>
                 </div>
               </div>
-              <div className="flex items-center space-x-12">
-                <img
-                  src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/astro-wordmark.svg"
-                  alt="placeholder"
-                  className="h-6 dark:invert"
-                />
-                <img
-                  src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/shadcn-ui-wordmark.svg"
-                  alt="placeholder"
-                  className="h-5 dark:invert"
-                />
+
+              <div className="space-y-3 text-sm text-muted-foreground">
+                <div className="flex items-center gap-3">
+                  <MapPin className="size-4 shrink-0" />
+                  <span>4800 S Saginaw St, Flint, MI 48507</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <Phone className="size-4 shrink-0" />
+                  <a href="tel:8107328336" className="font-medium text-primary hover:underline">
+                    (810) 732-8336
+                  </a>
+                </div>
+                <div className="flex items-center gap-3">
+                  <Video className="size-4 shrink-0" />
+                  <span>Telehealth available statewide in Michigan</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <Clock className="size-4 shrink-0" />
+                  <span>Mon–Fri 9:00 AM – 5:00 PM</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
+
+        {/* Right: form */}
         <div className="flex w-full justify-center lg:mt-2.5">
           <div className="relative flex w-full max-w-[30rem] min-w-[20rem] flex-col items-center overflow-visible md:min-w-[24rem]">
             <form
@@ -167,8 +177,8 @@ const Contact1 = ({ className, onSubmit }: Contact1Props) => {
                       showSuccess ? "opacity-100" : "opacity-0",
                     )}
                   >
-                    <p className="text-sm font-medium text-green-600 dark:text-green-400">
-                      Thank you! We'll be in touch soon.
+                    <p className="text-sm font-medium text-green-600">
+                      Thank you! We&apos;ll be in touch within one business day.
                     </p>
                   </div>
                 )}
@@ -180,13 +190,13 @@ const Contact1 = ({ className, onSubmit }: Contact1Props) => {
                     render={({ field, fieldState }) => (
                       <Field data-invalid={fieldState.invalid}>
                         <FieldLabel htmlFor={field.name}>
-                          Full name <span className="text-destructive">*</span>
+                          Full Name <span className="text-destructive">*</span>
                         </FieldLabel>
                         <Input
                           {...field}
                           id={field.name}
                           aria-invalid={fieldState.invalid}
-                          placeholder="Joe Average"
+                          placeholder="Jane Smith"
                         />
                         {fieldState.invalid && (
                           <FieldError errors={[fieldState.error]} />
@@ -197,33 +207,18 @@ const Contact1 = ({ className, onSubmit }: Contact1Props) => {
 
                   <Controller
                     control={form.control}
-                    name="company"
-                    render={({ field }) => (
-                      <Field>
-                        <FieldLabel htmlFor={field.name}>Company</FieldLabel>
-                        <Input
-                          {...field}
-                          id={field.name}
-                          placeholder="Acme Corp"
-                        />
-                      </Field>
-                    )}
-                  />
-
-                  <Controller
-                    control={form.control}
                     name="phone"
                     render={({ field, fieldState }) => (
                       <Field data-invalid={fieldState.invalid}>
                         <FieldLabel htmlFor={field.name}>
-                          Phone number{" "}
-                          <span className="text-destructive">*</span>
+                          Phone Number <span className="text-destructive">*</span>
                         </FieldLabel>
                         <Input
                           {...field}
                           id={field.name}
+                          type="tel"
                           aria-invalid={fieldState.invalid}
-                          placeholder="12 3456 7890"
+                          placeholder="(810) 555-0000"
                         />
                         {fieldState.invalid && (
                           <FieldError errors={[fieldState.error]} />
@@ -238,15 +233,14 @@ const Contact1 = ({ className, onSubmit }: Contact1Props) => {
                     render={({ field, fieldState }) => (
                       <Field data-invalid={fieldState.invalid}>
                         <FieldLabel htmlFor={field.name}>
-                          Email (business){" "}
-                          <span className="text-destructive">*</span>
+                          Email <span className="text-destructive">*</span>
                         </FieldLabel>
                         <Input
                           {...field}
                           id={field.name}
                           type="email"
                           aria-invalid={fieldState.invalid}
-                          placeholder="name@company.com"
+                          placeholder="jane@example.com"
                         />
                         {fieldState.invalid && (
                           <FieldError errors={[fieldState.error]} />
@@ -257,27 +251,20 @@ const Contact1 = ({ className, onSubmit }: Contact1Props) => {
 
                   <Controller
                     control={form.control}
-                    name="country"
+                    name="appointmentType"
                     render={({ field }) => (
                       <Field>
-                        <FieldLabel htmlFor={field.name}>Country</FieldLabel>
-                        <Select
-                          onValueChange={field.onChange}
-                          value={field.value}
-                        >
+                        <FieldLabel htmlFor={field.name}>
+                          Appointment Type
+                        </FieldLabel>
+                        <Select onValueChange={field.onChange} value={field.value}>
                           <SelectTrigger id={field.name} className="w-full">
-                            <SelectValue placeholder="Select country" />
+                            <SelectValue placeholder="Select one..." />
                           </SelectTrigger>
                           <SelectContent>
-                            <SelectItem value="aus">Australia</SelectItem>
-                            <SelectItem value="usa">United States</SelectItem>
-                            <SelectItem value="uk">United Kingdom</SelectItem>
-                            <SelectItem value="ca">Canada</SelectItem>
-                            <SelectItem value="de">Germany</SelectItem>
-                            <SelectItem value="fr">France</SelectItem>
-                            <SelectItem value="it">Italy</SelectItem>
-                            <SelectItem value="es">Spain</SelectItem>
-                            <SelectItem value="nl">Netherlands</SelectItem>
+                            <SelectItem value="in-person">In-Person (Flint, MI)</SelectItem>
+                            <SelectItem value="telehealth">Telehealth (Michigan)</SelectItem>
+                            <SelectItem value="unsure">Not Sure</SelectItem>
                           </SelectContent>
                         </Select>
                       </Field>
@@ -286,53 +273,19 @@ const Contact1 = ({ className, onSubmit }: Contact1Props) => {
 
                   <Controller
                     control={form.control}
-                    name="companySize"
+                    name="message"
                     render={({ field }) => (
                       <Field>
                         <FieldLabel htmlFor={field.name}>
-                          Company size
+                          Message (Optional)
                         </FieldLabel>
-                        <Select
-                          onValueChange={field.onChange}
-                          value={field.value}
-                        >
-                          <SelectTrigger id={field.name} className="w-full">
-                            <SelectValue placeholder="1-10" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="1-10">1-10</SelectItem>
-                            <SelectItem value="11-50">11-50</SelectItem>
-                            <SelectItem value="51-200">51-200</SelectItem>
-                            <SelectItem value="200+">200+</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </Field>
-                    )}
-                  />
-
-                  <Controller
-                    control={form.control}
-                    name="referral"
-                    render={({ field }) => (
-                      <Field>
-                        <FieldLabel htmlFor={field.name}>
-                          How did you hear about us?
-                        </FieldLabel>
-                        <Select
-                          onValueChange={field.onChange}
-                          value={field.value}
-                        >
-                          <SelectTrigger id={field.name} className="w-full">
-                            <SelectValue placeholder="Web Search" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="search">Web Search</SelectItem>
-                            <SelectItem value="social">Social Media</SelectItem>
-                            <SelectItem value="email">Email</SelectItem>
-                            <SelectItem value="referral">Referral</SelectItem>
-                            <SelectItem value="other">Other</SelectItem>
-                          </SelectContent>
-                        </Select>
+                        <textarea
+                          {...field}
+                          id={field.name}
+                          rows={3}
+                          className="w-full resize-none rounded-md border border-input bg-background px-3 py-2 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                          placeholder="Briefly describe what brings you in, or any questions you have..."
+                        />
                       </Field>
                     )}
                   />
@@ -347,24 +300,24 @@ const Contact1 = ({ className, onSubmit }: Contact1Props) => {
                     <Button
                       type="submit"
                       disabled={form.formState.isSubmitting}
+                      className="w-full"
                     >
                       {form.formState.isSubmitting ? (
                         <>
                           <LoaderIcon className="mr-2 size-4 animate-spin" />
-                          Booking...
+                          Sending...
                         </>
                       ) : (
-                        "Book demo"
+                        "Submit Request"
                       )}
                     </Button>
-                    <div className="text-xs text-muted-foreground">
-                      For more information about how we handle your personal
-                      information, please visit our{" "}
-                      <a href="#" className="underline">
-                        privacy policy
-                      </a>
-                      .
-                    </div>
+                    <p className="text-center text-xs text-muted-foreground">
+                      For urgent matters, call{" "}
+                      <a href="tel:8107328336" className="font-medium underline">
+                        (810) 732-8336
+                      </a>{" "}
+                      directly.
+                    </p>
                   </div>
                 </FieldGroup>
               </div>
