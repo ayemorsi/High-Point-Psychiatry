@@ -1,67 +1,51 @@
-import { Cta1 } from '@/components/cta1';
-import { Feature1 } from '@/components/feature1';
-import { Feature3 } from '@/components/feature3';
-import { Hero3 } from '@/components/hero3';
-import { Logos1 } from '@/components/logos1';
-import { Stats5 } from '@/components/stats5';
-import { Testimonial1 } from '@/components/testimonial1';
+import { ComingSoonForm } from '@/components/coming-soon-form';
 
-export default function HomePage() {
+export default function ComingSoonPage() {
   return (
-    <>
-      <Hero3
-        heading="Compassionate Psychiatric Care Across Michigan"
-        description="Ahmed Morsi, PMHNP-BC — Board-Certified Psychiatric Mental Health Nurse Practitioner serving Genesee County in-person and Michigan statewide via telehealth. Accepting new patients."
-        buttons={{
-          primary: { text: 'Book Appointment', url: '/contact' },
-          secondary: { text: 'Meet Ahmed', url: '/about' },
-        }}
-        reviews={{
-          count: 50,
-          rating: 5.0,
-          avatars: [
-            {
-              src: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar-1.webp',
-              alt: 'Patient',
-            },
-            {
-              src: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar-2.webp',
-              alt: 'Patient',
-            },
-            {
-              src: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar-3.webp',
-              alt: 'Patient',
-            },
-            {
-              src: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar-4.webp',
-              alt: 'Patient',
-            },
-            {
-              src: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar-5.webp',
-              alt: 'Patient',
-            },
-          ],
-        }}
-      />
+    <main className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-background px-6 py-24">
+      {/* Ambient background */}
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute top-[-10%] left-1/2 h-[560px] w-[560px] -translate-x-1/2 rounded-full bg-primary/[0.05] blur-3xl" />
+        <div className="absolute right-[-10%] bottom-[-15%] h-[420px] w-[420px] rounded-full bg-secondary/[0.08] blur-3xl" />
+      </div>
 
-      <Feature3 />
+      <div className="relative flex w-full max-w-lg flex-col items-center text-center">
+        {/* Wordmark */}
+        <p className="text-xs font-medium tracking-[0.4em] text-muted-foreground uppercase">
+          Genesee County, Michigan
+        </p>
 
-      <Stats5 />
+        <h1 className="font-display mt-4 text-5xl leading-none text-primary sm:text-6xl">
+          High Point
+        </h1>
+        <p className="mt-3 text-sm font-medium tracking-[0.55em] text-secondary uppercase">
+          Psychiatry
+        </p>
 
-      <Feature1
-        title="Meet Ahmed Morsi, PMHNP-BC"
-        description="Ahmed Morsi is a Board-Certified Psychiatric Mental Health Nurse Practitioner with 14+ years of healthcare experience. A University of Michigan–Flint alumnus who grew up in Genesee County, Ahmed is deeply committed to expanding access to quality psychiatric care in his home community. He offers both in-person appointments at our Flint office and telehealth visits across Michigan."
-        imageSrc="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-1.svg"
-        imageAlt="Ahmed Morsi, PMHNP-BC — High Point Psychiatry"
-        buttonPrimary={{ text: 'Full Bio & Background', href: '/about' }}
-        buttonSecondary={{ text: 'Book Appointment', href: '/contact' }}
-      />
+        <div className="mt-10 flex items-center gap-4">
+          <span className="h-px w-8 bg-primary/25" />
+          <span className="text-[11px] font-medium tracking-[0.35em] text-muted-foreground uppercase">
+            Coming Soon
+          </span>
+          <span className="h-px w-8 bg-primary/25" />
+        </div>
 
-      <Logos1 />
+        {/* Headline */}
+        <h2 className="font-display mt-8 text-3xl text-foreground sm:text-4xl">
+          A calmer place for your mind is almost here.
+        </h2>
 
-      <Testimonial1 />
+        <p className="mt-5 max-w-md text-base leading-relaxed text-muted-foreground">
+          We&apos;re preparing to welcome new patients across Genesee County — with compassionate,
+          board-certified psychiatric care available in person and by telehealth across Michigan.
+        </p>
 
-      <Cta1 />
-    </>
+        <ComingSoonForm />
+
+        <p className="mt-16 text-[11px] tracking-[0.15em] text-muted-foreground uppercase">
+          &copy; {new Date().getFullYear()} High Point Psychiatry — All Rights Reserved
+        </p>
+      </div>
+    </main>
   );
 }
