@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://highpointpsychiatry.com'),
   title: 'High Point Psychiatry | Coming Soon',
   description:
-    'High Point Psychiatry is opening soon in Flint, Michigan — compassionate, board-certified psychiatric care in person and via telehealth across Michigan.',
+    'High Point Psychiatry is opening soon in the Genesee County area — compassionate, board-certified psychiatric care in person and via telehealth across Michigan.',
   robots: { index: true, follow: true },
   icons: {
     icon: [
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'High Point Psychiatry | Coming Soon',
     description:
-      'Compassionate, board-certified psychiatric care in Flint, Michigan — opening soon.',
+      'Compassionate, board-certified psychiatric care in the Genesee County area — opening soon.',
     siteName: 'High Point Psychiatry',
     locale: 'en_US',
     type: 'website',

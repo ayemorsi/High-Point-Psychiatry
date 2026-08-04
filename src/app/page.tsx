@@ -12,7 +12,7 @@ export default function ComingSoonPage() {
       <div className="relative flex w-full max-w-lg flex-col items-center text-center">
         {/* Wordmark */}
         <p className="text-xs font-medium tracking-[0.4em] text-muted-foreground uppercase">
-          Est. Flint, Michigan
+          Genesee County, Michigan
         </p>
 
         <h1 className="font-display mt-4 text-5xl leading-none text-primary sm:text-6xl">
@@ -36,9 +36,8 @@ export default function ComingSoonPage() {
         </h2>
 
         <p className="mt-5 max-w-md text-base leading-relaxed text-muted-foreground">
-          We&apos;re preparing to welcome new patients in Flint, Michigan — with compassionate,
-          board-certified psychiatric care available in person and by telehealth across the
-          state.
+          We&apos;re preparing to welcome new patients across Genesee County — with compassionate,
+          board-certified psychiatric care available in person and by telehealth across Michigan.
         </p>
 
         <ComingSoonForm />
