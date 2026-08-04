@@ -1,4 +1,4 @@
-import { Mail, Phone } from 'lucide-react';
+import { ComingSoonForm } from '@/components/coming-soon-form';
 
 export default function ComingSoonPage() {
   return (
@@ -55,23 +55,7 @@ export default function ComingSoonPage() {
 
         <div className="mt-10 h-px w-16 bg-border-solid" />
 
-        {/* Contact */}
-        <div className="mt-10 flex flex-col items-center gap-3 sm:flex-row sm:gap-8">
-          <a
-            href="tel:8107328336"
-            className="inline-flex items-center gap-2 text-sm font-medium text-foreground transition-colors hover:text-secondary"
-          >
-            <Phone className="size-4 text-secondary" />
-            (810) 732-8336
-          </a>
-          <a
-            href="mailto:hello@highpointpsychiatry.com"
-            className="inline-flex items-center gap-2 text-sm font-medium text-foreground transition-colors hover:text-secondary"
-          >
-            <Mail className="size-4 text-secondary" />
-            hello@highpointpsychiatry.com
-          </a>
-        </div>
+        <ComingSoonForm />
 
         <p className="mt-16 text-xs text-muted-foreground">
           &copy; {new Date().getFullYear()} High Point Psychiatry. All rights reserved.
