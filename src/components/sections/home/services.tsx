@@ -34,7 +34,7 @@ function usePrevious<T>(value: T) {
   return previous
 }
 
-// Adapted from shadcnblocks Services 21: the photo beside the list wipes in for whichever service is hovered, focused or tapped.
+// Adapted from shadcnblocks Services 21: hovering or tapping a name wipes in its photo; only the arrow opens the service.
 export default function Services() {
   const [active, setActive] = useState(0)
   const previous = usePrevious(active)
@@ -95,27 +95,35 @@ export default function Services() {
         <Reveal delay={0.06} className="w-full">
           <ul className="border-t">
             {services.map((service, index) => (
-              <li key={service.slug} className="border-b">
-                <Link
-                  href={`/services#${service.slug}`}
+              <li
+                key={service.slug}
+                className="flex items-start justify-between gap-6 border-b py-6 md:py-8"
+              >
+                <button
+                  type="button"
+                  aria-pressed={index === active}
                   onMouseEnter={() => setActive(index)}
                   onFocus={() => setActive(index)}
-                  onTouchStart={() => setActive(index)}
+                  onClick={() => setActive(index)}
                   className={cn(
-                    "group flex items-start justify-between gap-6 py-6 outline-none md:py-8",
-                    "transition-opacity duration-300 ease-soft focus-visible:opacity-100",
+                    "display-type text-start text-4xl leading-none outline-none md:text-6xl lg:text-7xl",
+                    "transition-opacity duration-300 ease-soft focus-visible:underline focus-visible:decoration-2 focus-visible:underline-offset-8",
                     index === active ? "opacity-100" : "opacity-30"
                   )}
                 >
-                  <span className="display-type text-4xl leading-none md:text-6xl lg:text-7xl">
-                    {service.name}
-                    <sup className="figures ms-2 align-super text-sm text-muted-foreground md:text-lg">
-                      0{index + 1}
-                    </sup>
-                  </span>
+                  {service.name}
+                  <sup className="figures ms-2 align-super text-sm text-muted-foreground md:text-lg">
+                    0{index + 1}
+                  </sup>
+                </button>
+                <Link
+                  href={`/services#${service.slug}`}
+                  aria-label={`More about ${service.name}`}
+                  className="group mt-1 grid size-11 shrink-0 place-items-center rounded-full border transition-colors duration-200 hover:bg-foreground hover:text-background focus-visible:ring-3 focus-visible:ring-ring focus-visible:outline-none md:size-14"
+                >
                   <ArrowUpRightIcon
                     aria-hidden="true"
-                    className="mt-2 size-6 shrink-0 transition-transform duration-300 ease-soft group-hover:rotate-45 md:size-8"
+                    className="size-5 transition-transform duration-300 ease-soft group-hover:rotate-45 md:size-6"
                   />
                 </Link>
               </li>
