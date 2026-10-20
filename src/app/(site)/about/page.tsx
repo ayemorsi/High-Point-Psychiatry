@@ -17,8 +17,8 @@ export default function AboutPage() {
   return (
     <>
       <AboutHero />
-      <AboutPrinciples />
       <AboutTeam />
+      <AboutPrinciples />
       <Cta />
     </>
   )
