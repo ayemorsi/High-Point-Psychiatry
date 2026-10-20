@@ -87,7 +87,8 @@ export default function AboutHero() {
               Psychiatric care with room to breathe.
             </h1>
             <p className="enter mt-5 max-w-md text-muted-foreground delay-150 md:text-lg">
-              High Point Psychiatry is a Michigan practice built on careful
+              High Point Psychiatry is a psychiatric practice in Flint,
+              Michigan, serving patients across Genesee County, built on careful
               listening, clear explanations and treatment plans made together
               with patients.
             </p>

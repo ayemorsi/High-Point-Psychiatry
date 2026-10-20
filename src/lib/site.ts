@@ -1,9 +1,9 @@
 export const site = {
   name: "High Point Psychiatry",
   legalName: "High Point Psychiatry",
-  tagline: "Psychiatric care in Michigan",
+  tagline: "Psychiatric care in Flint, Michigan",
   description:
-    "High Point Psychiatry offers psychiatric evaluations, medication management and ongoing care in Michigan. Unhurried visits and a plan you build with your provider.",
+    "Psychiatrist in Flint, MI serving Genesee County. Evaluations, medication management, and care for ADHD, anxiety and depression. In person or telehealth. Medicaid accepted.",
   url: siteUrl(),
   email: {
     display: "user@hppmi.com",
@@ -27,6 +27,18 @@ export const site = {
       "https://maps.google.com/?q=1425+S+Graham+Rd+Flint+MI+48532+United+States",
   },
   website: "https://highpointpsychiatrymi.com",
+  /** Communities the practice serves, for search engines. */
+  areaServed: [
+    "Flint, MI",
+    "Genesee County, MI",
+    "Grand Blanc, MI",
+    "Burton, MI",
+    "Fenton, MI",
+    "Davison, MI",
+    "Flushing, MI",
+    "Swartz Creek, MI",
+    "Michigan (telehealth)",
+  ],
   /** Office hours: days and time are shown on the site; dayCodes, opens and closes feed the search engine listing. */
   hours: [
     {
