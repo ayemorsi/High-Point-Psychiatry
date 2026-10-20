@@ -19,6 +19,7 @@ const columns = [
     links: [
       { label: "Request an appointment", href: appointmentHref },
       { label: "Intake form", href: "/intake" },
+      { label: "Insurance", href: "/about#insurance" },
       { label: "Questions", href: "/contact#faq" },
       { label: "Contact", href: "/contact" },
     ],

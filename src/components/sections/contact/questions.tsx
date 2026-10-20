@@ -103,9 +103,10 @@ const topics: { title: string; questions: Question[] }[] = [
       {
         question: "Do you take my insurance?",
         answer:
-          "Coverage varies by plan. Contact us with the name of your insurance plan and we'll confirm before your first visit.",
-        link: { label: "Ask about your plan", href: "#contact" },
-        terms: "insurance coverage in network cost payment",
+          "We accept Medicare, Railroad Medicare, Medicaid, Tricare and VA CCN, plus many Medicare and Medicaid plans, including Blue Cross, HAP, Humana, McLaren, Meridian, Molina, Priority Health, Aetna and UHC. Coverage can vary, so we'll confirm your plan before your first visit.",
+        link: { label: "See every plan we accept", href: "/about#insurance" },
+        terms:
+          "insurance coverage in network cost payment medicare medicaid tricare va ccn blue cross hap humana mclaren meridian molina priority aetna uhc united",
       },
       {
         question: "What if I need to cancel?",
