@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
+import Link from "next/link"
 import { motion, type MotionStyle, useScroll, useTransform } from "motion/react"
 
 import {
@@ -10,6 +11,14 @@ import {
   questionCopy,
 } from "@/components/sections/services/shared"
 import Turntable from "@/components/sections/services/turntable"
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb"
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
 import {
   finderOptions,
@@ -60,6 +69,20 @@ export default function ServiceFinder() {
         {/* The words sink a little as the page scrolls while the ring keeps pace. */}
         <div className="parallax container flex flex-col items-center text-center [--depth:-2rem] lg:[--depth:-3rem]">
           <h1 className="sr-only">Our services</h1>
+
+          <Breadcrumb className="enter mb-8 md:mb-10">
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbLink asChild>
+                  <Link href="/">Home</Link>
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbPage>Services</BreadcrumbPage>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
 
           {/* Holds its height once the chips go, so the sentence under it never jumps. */}
           <div
