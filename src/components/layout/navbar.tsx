@@ -31,12 +31,11 @@ export default function Navbar() {
         aria-label="Main"
         className="dark relative mt-(--nav-top-length) flex h-(--nav-height-length) w-full max-w-(--nav-max-width-length) items-center justify-between gap-4 rounded-full bg-background ps-6 pe-2 text-foreground shadow-lg ring-1 ring-border"
       >
-        {/* On phones the logo sits centred in the bar, with the menu button on the right. */}
         <div className="flex flex-1 items-center">
           <Link
             href="/"
             aria-label={`${site.name} home`}
-            className="flex items-center max-sm:absolute max-sm:left-1/2 max-sm:-translate-x-1/2"
+            className="flex items-center"
           >
             <Logo className="h-7 sm:h-8 md:h-9" />
           </Link>
