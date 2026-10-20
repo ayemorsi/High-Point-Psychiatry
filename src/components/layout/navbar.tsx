@@ -31,11 +31,11 @@ export default function Navbar() {
         aria-label="Main"
         className="dark mt-(--nav-top-length) flex h-(--nav-height-length) w-full max-w-(--nav-max-width-length) items-center justify-between gap-4 rounded-full bg-background ps-6 pe-2 text-foreground shadow-lg ring-1 ring-border"
       >
-        <div className="flex-1">
+        <div className="flex flex-1 items-center">
           <Link
             href="/"
             aria-label={`${site.name} home`}
-            className="inline-flex"
+            className="flex items-center"
           >
             <Logo size="sm" />
           </Link>
