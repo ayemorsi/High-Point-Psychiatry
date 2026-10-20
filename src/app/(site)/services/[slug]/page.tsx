@@ -2,20 +2,21 @@ import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
-import { ArrowRightIcon, CheckIcon, PhoneIcon } from "lucide-react"
+import {
+  CalendarCheckIcon,
+  ClipboardListIcon,
+  MessagesSquareIcon,
+  PhoneIcon,
+} from "lucide-react"
 
 import ParallaxPhoto from "@/components/elements/parallax-photo"
-import Reveal from "@/components/elements/reveal"
-import SectionHeading from "@/components/elements/section-heading"
 import { appointmentHref } from "@/components/layout/navbar"
 import Cta from "@/components/sections/home/cta"
 import Process from "@/components/sections/home/process"
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion"
+import Faq7 from "@/components/shadcnblocks/faq7"
+import Feature7 from "@/components/shadcnblocks/feature7"
+import Feature76 from "@/components/shadcnblocks/feature76"
+import Feature103 from "@/components/shadcnblocks/feature103"
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -25,12 +26,22 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
 import { Button } from "@/components/ui/button"
+import { photos } from "@/lib/images"
 import { pageMetadata } from "@/lib/metadata"
 import { servicePages } from "@/lib/service-pages"
 import { services } from "@/lib/services"
 import { site } from "@/lib/site"
 
 export const dynamicParams = false
+
+const helpIcons = [
+  <MessagesSquareIcon key="talk" className="size-6 md:size-8" />,
+  <ClipboardListIcon key="plan" className="size-6 md:size-8" />,
+  <CalendarCheckIcon key="follow" className="size-6 md:size-8" />,
+]
+
+// A second photo for the checklist, so it never repeats the hero's.
+const photoList = Object.values(photos)
 
 export function generateStaticParams() {
   return services.map((service) => ({ slug: service.slug }))
@@ -65,6 +76,13 @@ export default async function ServicePage({
   const found = await load(params)
   if (!found) notFound()
   const { service, page } = found
+  const secondaryPhoto =
+    photoList.find(
+      (photo, index) =>
+        photo.src !== service.image.src &&
+        index % photoList.length ===
+          (services.indexOf(service) * 5 + 3) % photoList.length
+    ) ?? photoList.find((photo) => photo.src !== service.image.src)!
   const related = page.related.flatMap((slug) =>
     services.filter((item) => item.slug === slug)
   )
@@ -171,131 +189,70 @@ export default async function ServicePage({
         </div>
       </section>
 
-      <section className="section-padding container grid gap-10 lg:grid-cols-12 lg:gap-16">
-        <Reveal className="lg:col-span-5">
-          <h2 className="text-4xl md:text-5xl">{page.signsTitle}</h2>
-          <p className="mt-4 max-w-md text-muted-foreground md:text-lg">
-            If any of this sounds familiar, you don&apos;t have to figure it out
-            alone.
-          </p>
-        </Reveal>
-        <Reveal delay={0.06} className="lg:col-span-7">
-          <ul className="divide-y border-y">
-            {page.signs.map((sign) => (
-              <li key={sign} className="flex gap-3 py-4 md:text-lg">
-                <CheckIcon
-                  aria-hidden="true"
-                  className="mt-1 size-4 shrink-0 text-accent md:mt-1.5"
-                />
-                {sign}
-              </li>
-            ))}
-          </ul>
-        </Reveal>
-      </section>
+      <Feature7
+        heading={page.signsTitle}
+        description="If any of this sounds familiar, you don't have to figure it out alone."
+        image={secondaryPhoto}
+        features={page.signs}
+      />
 
-      <section className="scroll-mt-24 p-2 md:p-3">
-        <div className="section-padding rounded-3xl bg-card">
-          <div className="container">
-            <Reveal>
-              <SectionHeading title="How we help" />
-            </Reveal>
-            <ul className="mt-10 grid gap-3 md:mt-14 md:grid-cols-3 md:gap-4">
-              {page.help.map((item, index) => (
-                <li key={item.title}>
-                  <Reveal
-                    delay={index * 0.06}
-                    className="h-full rounded-2xl bg-background p-6 md:p-8"
-                  >
-                    <span className="figures text-sm text-muted-foreground">
-                      0{index + 1}
-                    </span>
-                    <h3 className="mt-3 text-2xl md:text-3xl">{item.title}</h3>
-                    <p className="mt-3 text-muted-foreground">{item.body}</p>
-                  </Reveal>
-                </li>
-              ))}
-            </ul>
-          </div>
+      <div className="p-2 md:p-3">
+        <div className="rounded-3xl bg-card [--background:var(--card)]">
+          <Feature76
+            heading="How we help"
+            features={page.help.map((item, index) => ({
+              ...item,
+              description: item.body,
+              icon: helpIcons[index % helpIcons.length],
+            }))}
+          />
         </div>
-      </section>
+      </div>
 
       <Process />
 
-      <section className="section-padding container grid gap-10 lg:grid-cols-12 lg:gap-16">
-        <Reveal className="lg:col-span-4">
-          <div className="lg:sticky lg:top-28">
-            <h2 className="text-4xl md:text-5xl">Common questions</h2>
-            <p className="mt-4 max-w-md text-muted-foreground md:text-lg">
-              We accept Medicare, Medicaid, Tricare, VA CCN and many Michigan
-              plans.{" "}
-              <Link
-                href="/about#insurance"
-                className="text-foreground underline decoration-foreground/30 underline-offset-4 hover:decoration-foreground"
-              >
-                See every plan
-              </Link>
-              .
-            </p>
-          </div>
-        </Reveal>
-        <Reveal delay={0.06} className="lg:col-span-8">
-          <Accordion type="multiple">
-            {page.faqs.map((faq) => (
-              <AccordionItem key={faq.question} value={faq.question}>
-                <AccordionTrigger>{faq.question}</AccordionTrigger>
-                <AccordionContent>
-                  <p className="max-w-xl">{faq.answer}</p>
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </Reveal>
-      </section>
+      <Faq7
+        heading="Common questions"
+        subheading="We're here to help."
+        body={
+          <p>
+            We accept Medicare, Medicaid, Tricare, VA CCN and many Michigan
+            plans.{" "}
+            <Link
+              href="/about#insurance"
+              className="text-foreground underline decoration-foreground/30 underline-offset-4 hover:decoration-foreground"
+            >
+              See every plan
+            </Link>{" "}
+            or call{" "}
+            <a
+              href={site.phone.href}
+              className="whitespace-nowrap text-foreground underline decoration-foreground/30 underline-offset-4 hover:decoration-foreground"
+            >
+              {site.phone.display}
+            </a>
+            .
+          </p>
+        }
+        action={
+          <Button asChild size="lg" variant="outline" className="w-fit">
+            <Link href="/contact#faq">View all FAQs</Link>
+          </Button>
+        }
+        faqs={page.faqs}
+      />
 
       {related.length > 0 && (
-        <section className="section-padding container pt-0 md:pt-0 lg:pt-0">
-          <Reveal>
-            <SectionHeading
-              title="Related services"
-              action={{ label: "All services", href: "/services" }}
-            />
-          </Reveal>
-          <ul className="mt-10 grid gap-3 sm:grid-cols-3 md:mt-14 md:gap-4">
-            {related.map((item, index) => (
-              <li key={item.slug}>
-                <Reveal delay={index * 0.06}>
-                  <Link
-                    href={`/services/${item.slug}`}
-                    className="group flex h-full items-center gap-4 rounded-2xl bg-card p-4 transition-colors duration-200 hover:bg-secondary md:p-5"
-                  >
-                    <span className="media relative size-16 shrink-0">
-                      <Image
-                        src={item.image.src}
-                        alt=""
-                        fill
-                        sizes="4rem"
-                        className="object-cover"
-                      />
-                    </span>
-                    <span className="min-w-0 flex-1">
-                      <span className="block text-xs font-medium text-muted-foreground">
-                        {item.kind}
-                      </span>
-                      <span className="display-type mt-1 block text-xl">
-                        {item.name}
-                      </span>
-                    </span>
-                    <ArrowRightIcon
-                      aria-hidden="true"
-                      className="size-5 shrink-0 transition-transform duration-200 group-hover:translate-x-1"
-                    />
-                  </Link>
-                </Reveal>
-              </li>
-            ))}
-          </ul>
-        </section>
+        <Feature103
+          badge="Related services"
+          heading="You might also look at"
+          items={related.map((item) => ({
+            title: item.name,
+            description: item.description,
+            href: `/services/${item.slug}`,
+          }))}
+          className="pt-0 md:pt-0 lg:pt-0"
+        />
       )}
 
       <Cta />
