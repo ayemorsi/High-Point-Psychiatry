@@ -1,0 +1,58 @@
+import type { Metadata } from "next"
+
+import { site } from "@/lib/site"
+import type { ProductImage } from "@/lib/types"
+
+export const siteTitle = `${site.name} | ${site.tagline}`
+
+export const ogImage = {
+  url: "/og-image.jpg",
+  width: 1200,
+  height: 630,
+  alt: `${site.name}. ${site.tagline}`,
+}
+
+export const ogLocale = site.commerce.locale.replace("-", "_")
+
+type PageMetadataOptions = {
+  /** Leave out on the home page to use the site title. */
+  title?: string
+  description?: string
+  path: string
+  image?: ProductImage
+  type?: "website" | "article"
+}
+
+// Every page sets its own share title, URL and image; the root layout only holds what they have in common.
+export function pageMetadata({
+  title,
+  description = site.description,
+  path,
+  image,
+  type = "website",
+}: PageMetadataOptions): Metadata {
+  const shareTitle = title ? `${title} · ${site.name}` : siteTitle
+  const images = image ? [{ url: image.src, alt: image.alt }] : [ogImage]
+
+  return {
+    ...(title && { title }),
+    description,
+    alternates: { canonical: path },
+    openGraph: {
+      type,
+      url: path,
+      siteName: site.name,
+      locale: ogLocale,
+      title: shareTitle,
+      description,
+      images,
+    },
+    twitter: {
+      card: "summary_large_image",
+      site: site.social.handle,
+      title: shareTitle,
+      description,
+      images,
+    },
+  }
+}

@@ -1,0 +1,456 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@plugin "@tailwindcss/typography";
+
+/* Tailwind skips gitignored folders; the local-only /archive page renders from _archive. */
+@source "../../_archive/src";
+@source "./(store)/archive";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --display-weight: 500;
+  --text-weight: 400;
+  --display-tracking: -0.022em;
+  --font-display: var(--font-newsreader);
+  --font-text: var(--font-host-grotesk);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+  --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-swift: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+  --animate-reveal-up: reveal-up 1.1s var(--ease-swift) both;
+  --animate-settle: settle 1.8s var(--ease-soft) both;
+  --animate-notch-open: notch-open 1.2s var(--ease-soft) 0.25s backwards;
+  --animate-orbit-in: orbit-in 1.5s var(--ease-soft) both;
+  --animate-orbit-counter: orbit-counter 1.5s var(--ease-soft) both;
+  --animate-progress: progress var(--progress-duration, 6s) linear both;
+  --animate-ring-progress: ring-progress var(--progress-duration, 5s) linear
+    both;
+  @keyframes ring-progress {
+    from {
+      stroke-dashoffset: 1;
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+  @keyframes progress {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+  @keyframes orbit-in {
+    from {
+      opacity: 0;
+      rotate: calc(var(--theta) + var(--orbit-from));
+    }
+    to {
+      opacity: 1;
+      rotate: var(--theta);
+    }
+  }
+  @keyframes orbit-counter {
+    from {
+      rotate: calc((var(--theta) + var(--orbit-from)) * -1);
+    }
+    to {
+      rotate: calc(var(--theta) * -1);
+    }
+  }
+  @keyframes reveal-up {
+    from {
+      clip-path: inset(100% 0 0 0);
+    }
+    to {
+      clip-path: inset(0);
+    }
+  }
+  /* The slot starts as the pill itself, hidden behind it, and grows out to its gap; the corners round in last. */
+  @keyframes notch-open {
+    from {
+      --notch-gap: 0;
+      --notch-fillet: 0;
+    }
+    65% {
+      --notch-fillet: 0;
+    }
+  }
+  @keyframes settle {
+    from {
+      transform: scale(1.12);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+}
+
+/* Photos carry the color; the interface stays ivory and ink. */
+:root {
+  --background: oklch(0.982 0.008 98); /* ivory */
+  --foreground: oklch(0.185 0.006 60); /* ink */
+  --card: oklch(0.958 0.01 95); /* shell — cards, image wells, panels */
+  --card-foreground: oklch(0.185 0.006 60);
+  --popover: oklch(0.992 0.005 98); /* floats above the page */
+  --popover-foreground: oklch(0.185 0.006 60);
+  --primary: oklch(0.185 0.006 60); /* ink pill — the only buy color */
+  --primary-foreground: oklch(0.982 0.008 98);
+  --secondary: oklch(0.928 0.012 92); /* oat */
+  --secondary-foreground: oklch(0.185 0.006 60);
+  --muted: oklch(0.928 0.012 92); /* oat — chips, tracks, skeletons */
+  --muted-foreground: oklch(0.47 0.01 80); /* stone */
+  --accent: oklch(0.5 0.075 60); /* bronze — sale, low stock, nothing else */
+  --accent-foreground: oklch(0.982 0.008 98);
+  --success: oklch(0.5 0.06 150); /* moss — in stock, confirmations */
+  --success-foreground: oklch(0.982 0.008 98);
+  --destructive: oklch(0.55 0.19 27);
+  --border: oklch(0.185 0.006 60 / 12%);
+  --input: oklch(0.185 0.006 60 / 14%);
+  --ring: oklch(0.185 0.006 60);
+  --radius: 0.75rem;
+}
+
+@keyframes notch-close {
+  to {
+    --notch-gap: 0;
+    --notch-fillet: 0;
+    translate: -50% -100%;
+  }
+}
+
+/* Registered so the notch's gap and fillet can animate; everything derived from them follows frame by frame. */
+@property --notch-gap {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0.75;
+}
+@property --notch-fillet {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 1;
+}
+
+/* The nav pill's geometry as unitless rem, so .nav-notch's sqrt/pow math can share it with the navbar. */
+:root {
+  --nav-top: 0.75;
+  --nav-height: 3.5;
+  --nav-max-width: 54;
+  --nav-inset: 0.75;
+  @media (width >= 48rem) {
+    --nav-top: 1;
+  }
+}
+
+/* The same geometry as lengths, for the navbar's utilities. */
+:root {
+  --nav-top-length: calc(var(--nav-top) * 1rem);
+  --nav-height-length: calc(var(--nav-height) * 1rem);
+  --nav-max-width-length: calc(var(--nav-max-width) * 1rem);
+  --nav-inset-length: calc(var(--nav-inset) * 1rem);
+}
+
+/* Ink band — scoped with `dark` on the footer, the nav pill and statement bands. */
+.dark {
+  --background: oklch(0.185 0.006 60);
+  --foreground: oklch(0.965 0.008 98);
+  --card: oklch(0.235 0.006 60);
+  --card-foreground: oklch(0.965 0.008 98);
+  --popover: oklch(0.235 0.006 60);
+  --popover-foreground: oklch(0.965 0.008 98);
+  --primary: oklch(0.965 0.008 98);
+  --primary-foreground: oklch(0.185 0.006 60);
+  --secondary: oklch(0.285 0.006 60);
+  --secondary-foreground: oklch(0.965 0.008 98);
+  --muted: oklch(0.285 0.006 60);
+  --muted-foreground: oklch(0.74 0.01 90);
+  --accent: oklch(0.78 0.07 70);
+  --accent-foreground: oklch(0.185 0.006 60);
+  --success: oklch(0.76 0.09 150);
+  --success-foreground: oklch(0.185 0.006 60);
+  --destructive: oklch(0.7 0.19 22);
+  --border: oklch(0.965 0.008 98 / 14%);
+  --input: oklch(0.965 0.008 98 / 18%);
+  --ring: oklch(0.965 0.008 98);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply scroll-pt-24 motion-safe:scroll-smooth;
+  }
+  body {
+    @apply bg-background font-text weight-text text-foreground antialiased;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-display weight-display text-balance;
+    letter-spacing: var(--display-tracking);
+  }
+  p {
+    @apply text-pretty;
+  }
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+/* Components, not utilities, so a call site's rounded-* or bg-* overrides the well. */
+@layer components {
+  .media {
+    @apply relative overflow-hidden rounded-2xl bg-card;
+  }
+}
+
+@layer utilities {
+  .section-padding {
+    @apply py-14 md:py-20 lg:py-24;
+  }
+  .hero-padding {
+    @apply pt-28 pb-14 md:pt-36 md:pb-20 lg:pt-40 lg:pb-24;
+  }
+  /* .product-row holds exactly four (home rails): two by two until desktop, never three plus an orphan. */
+  .product-grid,
+  .product-row {
+    @apply grid grid-cols-2 gap-x-3 gap-y-8 md:gap-x-5 md:gap-y-12 lg:grid-cols-4;
+  }
+  .product-grid {
+    @apply md:max-lg:grid-cols-3;
+  }
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-xs font-medium text-muted-foreground before:size-1 before:rounded-full before:bg-current;
+  }
+  /* CSS, not JS, so the entrance starts on first paint and stays smooth while the page hydrates. */
+  .enter {
+    @apply animate-in duration-700 ease-soft fill-mode-both blur-in-xs fade-in slide-in-from-bottom-4 motion-reduce:slide-in-from-bottom-0 motion-reduce:blur-in-0;
+  }
+  .swap {
+    @apply animate-in duration-300 ease-soft fill-mode-both blur-in-xs fade-in slide-in-from-bottom-2 motion-reduce:slide-in-from-bottom-0 motion-reduce:blur-in-0;
+  }
+  /* The section feeds --parallax (1 entering, 0 centred, -1 leaving); each layer sets its own --depth. */
+  .parallax {
+    translate: 0 calc(var(--parallax, 0) * var(--depth, 0px));
+    @media (prefers-reduced-motion: reduce) {
+      translate: none;
+    }
+  }
+  /* A "never" icon: the stroke under its slash is cut away, so the slash reads on any surface. */
+  .slash-cut {
+    mask-image: linear-gradient(
+      135deg,
+      #000 44%,
+      transparent 44% 56%,
+      #000 56%
+    );
+  }
+  /* A caption pinned over a photo. */
+  .photo-tag {
+    @apply absolute rounded-full bg-background/85 px-2.5 py-1 text-xs font-medium backdrop-blur-sm;
+  }
+  /* Checkout form beside its order summary. */
+  .checkout-grid {
+    @apply grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,27rem)] lg:gap-16 xl:gap-24;
+  }
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+  .figures {
+    font-variant-numeric: tabular-nums;
+  }
+  /* A heading set in the shop's sans: "serif speaks, sans works". */
+  .sans-heading {
+    @apply font-text font-medium tracking-normal;
+  }
+  /* Display type on a non-heading element; headings get this from the base layer. */
+  .display-type {
+    @apply font-display weight-display;
+    letter-spacing: var(--display-tracking);
+  }
+  /* A slot cut into a photo panel's top edge around the nav pill; needs --panel-inset (rem) on an ancestor. */
+  .nav-notch {
+    --notch-gap: 0.75;
+    --notch-fillet: 1;
+    /* The pill's end radius, and its centre's depth below the panel's top edge. */
+    --r: calc(var(--nav-height) / 2 + var(--notch-gap));
+    --cy: calc(var(--nav-top) - var(--panel-inset) + var(--nav-height) / 2);
+    /* Where the pill's end crosses the top edge, and where a fillet tangent to both starts. */
+    --edge: sqrt(max(0, pow(var(--r), 2) - pow(var(--cy), 2)));
+    --outer: sqrt(
+      max(
+        0,
+        pow(var(--r) + var(--notch-fillet), 2) -
+          pow(var(--notch-fillet) - var(--cy), 2)
+      )
+    );
+    position: absolute;
+    top: calc((var(--cy) - var(--r)) * 1rem);
+    left: 50%;
+    translate: -50% 0;
+    width: calc(
+      min(
+          100% + (var(--panel-inset) - var(--nav-inset)) * 2rem,
+          var(--nav-max-width) * 1rem
+        ) +
+        var(--notch-gap) * 2rem
+    );
+    height: calc(var(--r) * 2rem);
+    border-radius: 9999px;
+    background: var(--background);
+    pointer-events: none;
+  }
+  /* The two inward corners where the slot meets the edge, so the photo turns in smoothly. */
+  .nav-notch::before,
+  .nav-notch::after {
+    content: "";
+    position: absolute;
+    top: calc((var(--r) - var(--cy)) * 1rem);
+    width: calc((var(--outer) - var(--edge)) * 1rem);
+    height: calc(
+      (
+          var(--notch-fillet) + (var(--cy) - var(--notch-fillet)) *
+            var(--notch-fillet) / (var(--r) + var(--notch-fillet))
+        ) *
+        1rem
+    );
+    --fillet-at: calc(var(--notch-fillet) * 1rem);
+  }
+  .nav-notch::before {
+    left: calc((var(--r) - var(--outer)) * 1rem);
+    background: radial-gradient(
+      circle at 0 var(--fillet-at),
+      transparent var(--fillet-at),
+      var(--background) calc(var(--fillet-at) + 0.5px)
+    );
+  }
+  .nav-notch::after {
+    right: calc((var(--r) - var(--outer)) * 1rem);
+    background: radial-gradient(
+      circle at 100% var(--fillet-at),
+      transparent var(--fillet-at),
+      var(--background) calc(var(--fillet-at) + 0.5px)
+    );
+  }
+  /* Once the page scrolls the pill has left its slot, so the slot slides up out of the edge. */
+  @supports (animation-timeline: scroll()) {
+    .nav-notch.animate-notch-open {
+      animation:
+        notch-close linear both,
+        var(--animate-notch-open);
+      animation-timeline: scroll(root), auto;
+      animation-range:
+        0 12rem,
+        normal;
+    }
+  }
+  /* The brand's only ornament: one panel per page (hero, newsletter or empty bag). */
+  .arc-field {
+    --arc-tone: color-mix(
+      in oklab,
+      var(--foreground) var(--arc-strength, 3%),
+      transparent
+    );
+    background-image:
+      radial-gradient(
+        circle at var(--arc-x, -6%) 56%,
+        transparent calc(var(--arc-inner, 27vw) - 1px),
+        var(--arc-tone) var(--arc-inner, 27vw) var(--arc-outer, 35vw),
+        transparent calc(var(--arc-outer, 35vw) + 1px)
+      ),
+      radial-gradient(
+        circle at calc(100% - var(--arc-x, -6%)) 56%,
+        transparent calc(var(--arc-inner, 27vw) - 1px),
+        var(--arc-tone) var(--arc-inner, 27vw) var(--arc-outer, 35vw),
+        transparent calc(var(--arc-outer, 35vw) + 1px)
+      );
+  }
+}
+
+@utility weight-display {
+  font-weight: var(--display-weight);
+}
+
+@utility weight-text {
+  font-weight: var(--text-weight);
+}
+
+@utility container {
+  margin-inline: auto;
+  padding-inline: 1rem;
+  @media (width >= 48rem) {
+    padding-inline: 1.5rem;
+  }
+  @media (width >= 64rem) {
+    padding-inline: 2.5rem;
+    max-width: 90rem;
+  }
+}
+
+@utility bigger-container {
+  margin-inline: auto;
+  padding-inline: 1rem;
+  @media (width >= 48rem) {
+    padding-inline: 1.5rem;
+  }
+  @media (width >= 64rem) {
+    padding-inline: 2.5rem;
+    max-width: 110rem;
+  }
+}
+
+/* Clip reveals and the settle zoom fall back to a plain fade. */
+@media (prefers-reduced-motion: reduce) {
+  .animate-orbit-in,
+  .animate-orbit-counter {
+    animation-duration: 1ms;
+    animation-delay: 0ms;
+  }
+  .animate-progress,
+  .animate-ring-progress {
+    animation: none;
+  }
+  .animate-notch-open {
+    animation: none;
+  }
+  .animate-reveal-up,
+  .animate-settle {
+    animation: enter 0.4s ease-out both;
+    --tw-enter-opacity: 0;
+  }
+}
