@@ -14,12 +14,38 @@ import {
 import { Button } from "@/components/ui/button"
 import { photos } from "@/lib/images"
 import { site } from "@/lib/site"
+import { externalLink } from "@/lib/utils"
 
-const facts = [
-  { label: "Location", value: `${site.address.city}, ${site.region}` },
+const { address } = site
+
+const facts: { label: string; value: React.ReactNode }[] = [
+  {
+    label: "Location",
+    value: (
+      <a
+        href={address.mapHref}
+        {...externalLink(`${site.name} on Google Maps`)}
+        className="underline decoration-foreground/30 underline-offset-4 hover:decoration-foreground"
+      >
+        {address.street}
+        <br />
+        {address.city}, {address.state} {address.zip}
+      </a>
+    ),
+  },
   { label: "Care", value: "Evaluation, medication and follow-up" },
   { label: "Visits", value: "In person and telehealth" },
-  { label: "Phone", value: site.phone.display },
+  {
+    label: "Phone",
+    value: (
+      <a
+        href={site.phone.href}
+        className="underline decoration-foreground/30 underline-offset-4 hover:decoration-foreground"
+      >
+        {site.phone.display}
+      </a>
+    ),
+  },
 ]
 
 // Text on shell beside a full-height photo, with a slot cut round the fixed nav pill.
