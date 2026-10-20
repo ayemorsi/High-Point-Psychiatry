@@ -1,20 +1,20 @@
 export const site = {
-  name: "Nacre",
-  legalName: "Nacre Skincare, Inc.",
+  name: "High Point Psychiatry",
+  legalName: "High Point Psychiatry",
   tagline: "Good skin is built in layers.",
   description:
     "Four-step skincare made in small batches in California. Each product has one job. Fragrance-free, refillable, and photographed without retouching.",
   url: siteUrl(),
   email: {
-    display: "care@example.com",
-    href: "mailto:care@example.com",
+    display: "user@hppmi.com",
+    href: "mailto:user@hppmi.com",
   },
   founded: 2019,
   founder: { name: "Camille Ortega", firstName: "Camille", years: 12 },
-  city: "Laguna Beach",
-  origin: "Laguna Beach, California",
+  city: "Michigan",
+  origin: "Michigan",
   rating: { score: 4.8, count: 12400 },
-  storageKey: "nacre",
+  storageKey: "hpp",
   commerce: {
     currency: "USD",
     locale: "en-US",
@@ -32,7 +32,7 @@ export const site = {
     payments: ["Visa", "Mastercard", "Amex", "Apple Pay", "Shop Pay"],
   },
   social: {
-    handle: "@nacreskin",
+    handle: "@highpointpsychiatry",
     followers: "86k",
     instagram: "https://instagram.com",
     tiktok: "https://tiktok.com",
