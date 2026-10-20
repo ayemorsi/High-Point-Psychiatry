@@ -18,10 +18,11 @@ export const navLinks = [
   { label: "What we treat", href: "/#conditions" },
   { label: "About", href: "/about" },
   { label: "FAQ", href: "/contact#faq" },
-  { label: "Intake form", href: "/intake" },
 ]
 
 export const appointmentHref = "/contact#contact"
+
+export const intakeHref = "/intake"
 
 export default function Navbar() {
   return (
@@ -58,7 +59,7 @@ export default function Navbar() {
             size="sm"
             className="max-sm:hidden"
           >
-            <Link href={appointmentHref}>Request an appointment</Link>
+            <Link href={intakeHref}>Become a patient</Link>
           </Button>
           <Sheet>
             <SheetTrigger asChild>
@@ -95,7 +96,7 @@ export default function Navbar() {
               <div className="mt-6 px-4">
                 <SheetClose asChild>
                   <Button asChild className="w-full">
-                    <Link href={appointmentHref}>Request an appointment</Link>
+                    <Link href={intakeHref}>Become a patient</Link>
                   </Button>
                 </SheetClose>
               </div>
