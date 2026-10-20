@@ -35,3 +35,20 @@ export const insuranceGroups = [
     ],
   },
 ]
+
+/** The best-known names, for the scrolling strip on the home page. Add a logo path under /public to show the logo instead of the name. */
+export const featuredInsurers: { name: string; logo?: string }[] = [
+  { name: "Medicare" },
+  { name: "Medicaid" },
+  { name: "Blue Cross Blue Shield" },
+  { name: "Humana" },
+  { name: "Aetna" },
+  { name: "UnitedHealthcare" },
+  { name: "Molina Healthcare" },
+  { name: "Priority Health" },
+  { name: "HAP" },
+  { name: "McLaren" },
+  { name: "Meridian" },
+  { name: "Tricare" },
+  { name: "VA Community Care" },
+]
