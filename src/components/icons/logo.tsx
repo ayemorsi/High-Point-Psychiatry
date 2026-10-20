@@ -9,13 +9,14 @@ import wordWhite from "@/../public/images/brand/wordmark-white.png"
 import { site } from "@/lib/site"
 import { cn } from "@/lib/utils"
 
-// A horizontal lockup for the menu: the mountains beside the logo's own HIGH POINT / PSYCHIATRY lettering, centred on one line.
+// A horizontal lockup for the menu: the mountains beside the logo's own HIGH POINT / PSYCHIATRY lettering, on one centre line.
 export const Logo = ({ className }: { className?: string }) => (
   <span
     className={cn("inline-flex h-9 items-center gap-2.5 md:gap-3", className)}
   >
     <LogoMark className="h-[58%]" />
-    <span className="relative inline-flex h-full shrink-0">
+    {/* On phones the lettering is centred in the menu bar (its positioned ancestor) while the mountains stay left. */}
+    <span className="inline-flex h-full shrink-0 max-sm:absolute max-sm:left-1/2 max-sm:h-7 max-sm:-translate-x-1/2 sm:relative">
       <Image
         src={wordColor}
         alt={site.name}
