@@ -321,7 +321,7 @@ function Pearl({
         <svg
           viewBox="0 0 100 100"
           aria-hidden="true"
-          className="absolute -inset-[14%] size-[128%] -rotate-90 fill-none stroke-foreground"
+          className="absolute -inset-[14%] size-[128%] -rotate-90 fill-none stroke-accent"
         >
           <circle
             cx="50"
