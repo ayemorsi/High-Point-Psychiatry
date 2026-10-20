@@ -225,7 +225,7 @@ export default function AccountSignIn() {
                           variant="link"
                           onClick={() => go("create")}
                         >
-                          New to Nacre? Create an account
+                          New to High Point Psychiatry? Create an account
                         </Button>
                       </>
                     )}
