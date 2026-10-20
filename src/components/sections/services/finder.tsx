@@ -63,9 +63,9 @@ export default function ServiceFinder() {
     <motion.section
       ref={section}
       style={{ "--parallax": parallax } as MotionStyle}
-      className="p-2 md:p-3"
+      className="p-2 [--panel-inset:0.5] md:p-3 md:[--panel-inset:0.75]"
     >
-      <div className="arc-field hero-padding overflow-hidden rounded-3xl bg-card">
+      <div className="arc-field hero-padding relative overflow-hidden rounded-3xl bg-card">
         {/* The words sink a little as the page scrolls while the ring keeps pace. */}
         <div className="parallax container flex flex-col items-center text-center [--depth:-2rem] lg:[--depth:-3rem]">
           <h1 className="sr-only">Our services</h1>
@@ -122,6 +122,7 @@ export default function ServiceFinder() {
         </div>
 
         <Turntable finder={finder} className="mt-10 md:mt-14" />
+        <div aria-hidden="true" className="nav-notch animate-notch-open" />
       </div>
     </motion.section>
   )

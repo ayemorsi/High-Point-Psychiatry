@@ -163,8 +163,8 @@ export default function Questions() {
 
   return (
     <section id="faq" aria-labelledby="help-title" className="scroll-mt-24">
-      <div className="p-2 md:p-3">
-        <div className="arc-field hero-padding rounded-3xl bg-card">
+      <div className="p-2 [--panel-inset:0.5] md:p-3 md:[--panel-inset:0.75]">
+        <div className="arc-field hero-padding relative overflow-hidden rounded-3xl bg-card">
           <div className="container flex flex-col items-center text-center">
             <Breadcrumb className="enter">
               <BreadcrumbList>
@@ -244,6 +244,7 @@ export default function Questions() {
               ))}
             </div>
           </div>
+          <div aria-hidden="true" className="nav-notch animate-notch-open" />
         </div>
       </div>
 
