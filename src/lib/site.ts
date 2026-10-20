@@ -6,8 +6,8 @@ export const site = {
     "Four-step skincare made in small batches in California. Each product has one job. Fragrance-free, refillable, and photographed without retouching.",
   url: siteUrl(),
   email: {
-    display: "care@example.com",
-    href: "mailto:care@example.com",
+    display: "user@hppmi.com",
+    href: "mailto:user@hppmi.com",
   },
   founded: 2019,
   founder: { name: "Camille Ortega", firstName: "Camille", years: 12 },
