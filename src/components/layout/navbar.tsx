@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { MenuIcon } from "lucide-react"
 
-import { Logo } from "@/components/icons/logo"
+import { Logo, LogoFull } from "@/components/icons/logo"
 import { Button } from "@/components/ui/button"
 import {
   Sheet,
@@ -74,7 +74,7 @@ export default function Navbar() {
             <SheetContent side="right">
               <SheetHeader className="pe-14">
                 <SheetTitle className="sr-only">Menu</SheetTitle>
-                <Logo size="sm" />
+                <LogoFull className="h-12" />
               </SheetHeader>
               <ul className="flex flex-col px-4">
                 {navLinks.map((link) => (

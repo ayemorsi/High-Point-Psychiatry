@@ -56,7 +56,9 @@ export const site = {
 // Canonical links, the sitemap and share cards build on this. Vercel fills in the production domain; set NEXT_PUBLIC_SITE_URL anywhere else.
 function siteUrl() {
   if (process.env.NEXT_PUBLIC_SITE_URL) return process.env.NEXT_PUBLIC_SITE_URL
-  if (process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL)
-    return `https://${process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL}`
+  const vercel =
+    process.env.VERCEL_PROJECT_PRODUCTION_URL ??
+    process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL
+  if (vercel) return `https://${vercel}`
   return "http://localhost:3000"
 }
