@@ -91,7 +91,10 @@ export default function Hero() {
   }
 
   return (
-    <section ref={section} className="p-2 md:p-3">
+    <section
+      ref={section}
+      className="p-2 [--panel-inset:0.5] md:p-3 md:[--panel-inset:0.75]"
+    >
       <div className="arc-field relative flex min-h-[max(calc(100svh-1.5rem),46rem)] flex-col overflow-hidden rounded-3xl bg-card [--arc-x:-14%]">
         <div className="container flex flex-1 flex-col items-center justify-center pt-24 pb-6 text-center">
           <h1 className="enter max-w-4xl text-5xl leading-none md:text-6xl lg:text-7xl 2xl:text-8xl">
@@ -272,6 +275,7 @@ export default function Hero() {
             />
           </SceneCard>
         </div>
+        <div aria-hidden="true" className="nav-notch animate-notch-open" />
       </div>
     </section>
   )
