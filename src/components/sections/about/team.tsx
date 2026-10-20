@@ -55,12 +55,12 @@ function Portrait({
 }) {
   if (image) {
     return (
-      <div className="media relative size-24 shrink-0 md:size-28">
+      <div className="media relative size-28 shrink-0 md:size-36">
         <Image
           src={image.src}
           alt={image.alt}
           fill
-          sizes="7rem"
+          sizes="9rem"
           className="object-cover"
         />
       </div>
@@ -75,7 +75,7 @@ function Portrait({
   return (
     <div
       aria-hidden="true"
-      className="arc-field grid size-24 shrink-0 place-items-center rounded-2xl bg-card [--arc-inner:2.5rem] [--arc-outer:3.25rem] [--arc-strength:6%] md:size-28"
+      className="arc-field grid size-28 shrink-0 place-items-center rounded-2xl bg-card [--arc-inner:2.5rem] [--arc-outer:3.25rem] [--arc-strength:6%] md:size-36"
     >
       <span className="display-type text-3xl md:text-4xl">{initials}</span>
     </div>
