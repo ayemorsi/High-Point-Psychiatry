@@ -16,10 +16,10 @@ import { photos } from "@/lib/images"
 import { site } from "@/lib/site"
 
 const facts = [
-  { label: "Location", value: site.region },
+  { label: "Location", value: `${site.address.city}, ${site.region}` },
   { label: "Care", value: "Evaluation, medication and follow-up" },
   { label: "Visits", value: "In person and telehealth" },
-  { label: "Contact", value: site.email.display },
+  { label: "Phone", value: site.phone.display },
 ]
 
 // Text on shell beside a full-height photo, with a slot cut round the fixed nav pill.

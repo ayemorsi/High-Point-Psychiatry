@@ -9,6 +9,24 @@ export const site = {
     display: "user@hppmi.com",
     href: "mailto:user@hppmi.com",
   },
+  phone: {
+    display: "(810) 321-5374",
+    href: "tel:+18103215374",
+  },
+  fax: {
+    display: "(810) 267-9347",
+    href: "tel:+18102679347",
+  },
+  address: {
+    street: "1425 S Graham Rd",
+    city: "Flint",
+    state: "MI",
+    zip: "48532",
+    country: "US",
+    mapHref:
+      "https://maps.google.com/?q=1425+S+Graham+Rd+Flint+MI+48532+United+States",
+  },
+  website: "https://highpointpsychiatrymi.com",
   region: "Michigan",
   locale: "en-US",
   // Shown wherever someone might be reaching out in an emergency.

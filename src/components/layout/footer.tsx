@@ -3,6 +3,7 @@ import Link from "next/link"
 import { Logo } from "@/components/icons/logo"
 import { appointmentHref } from "@/components/layout/navbar"
 import { site } from "@/lib/site"
+import { externalLink } from "@/lib/utils"
 
 const columns = [
   {
@@ -44,14 +45,35 @@ export default function Footer() {
             <p className="display-type mt-5 max-w-sm text-2xl leading-snug text-muted-foreground">
               {site.tagline}.
             </p>
-            <p className="mt-6 text-sm text-muted-foreground">
+            <address className="mt-6 space-y-1.5 text-sm text-muted-foreground not-italic">
               <a
-                href={site.email.href}
-                className="text-foreground underline decoration-foreground/30 underline-offset-4 transition-colors duration-200 hover:decoration-foreground"
+                href={site.address.mapHref}
+                {...externalLink(`${site.name} on Google Maps`)}
+                className="block transition-colors duration-200 hover:text-foreground"
               >
-                {site.email.display}
+                {site.address.street}
+                <br />
+                {site.address.city}, {site.address.state} {site.address.zip}
               </a>
-            </p>
+              <p className="pt-2">
+                Phone{" "}
+                <a
+                  href={site.phone.href}
+                  className="text-foreground underline decoration-foreground/30 underline-offset-4 transition-colors duration-200 hover:decoration-foreground"
+                >
+                  {site.phone.display}
+                </a>
+              </p>
+              <p>Fax {site.fax.display}</p>
+              <p>
+                <a
+                  href={site.email.href}
+                  className="text-foreground underline decoration-foreground/30 underline-offset-4 transition-colors duration-200 hover:decoration-foreground"
+                >
+                  {site.email.display}
+                </a>
+              </p>
+            </address>
           </div>
 
           <nav
