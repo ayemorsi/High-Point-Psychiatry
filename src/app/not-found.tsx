@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 
-import { LogoMark } from "@/components/icons/logo"
+import { LogoFull } from "@/components/icons/logo"
 import { Button } from "@/components/ui/button"
 
 export const metadata: Metadata = {
@@ -14,7 +14,7 @@ export default function NotFoundPage() {
       id="main-content"
       className="container flex min-h-svh flex-col items-center justify-center text-center"
     >
-      <LogoMark className="size-10" />
+      <LogoFull className="h-20" />
       <h1 className="mt-8 text-4xl md:text-5xl">
         We can&apos;t find that page.
       </h1>

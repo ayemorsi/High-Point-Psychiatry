@@ -1,12 +1,17 @@
-import type { ComponentProps, SVGProps } from "react"
+import type { ComponentProps } from "react"
+import Image from "next/image"
 import { cva, type VariantProps } from "class-variance-authority"
 
+import fullColor from "@/../public/images/brand/logo.png"
+import fullWhite from "@/../public/images/brand/logo-white.png"
+import markColor from "@/../public/images/brand/mark.png"
+import markWhite from "@/../public/images/brand/mark-white.png"
 import { site } from "@/lib/site"
 import { cn } from "@/lib/utils"
 
 // The mark is sized in em, so it scales with the wordmark.
 const logoVariants = cva(
-  "display-type inline-flex items-center gap-[0.32em] leading-none whitespace-nowrap",
+  "display-type inline-flex items-center gap-[0.4em] leading-none whitespace-nowrap",
   {
     variants: {
       size: {
@@ -28,22 +33,43 @@ export const Logo = ({
   ...props
 }: ComponentProps<"span"> & VariantProps<typeof logoVariants>) => (
   <span className={cn(logoVariants({ size, className }))} {...props}>
-    <LogoMark className="size-[1.08em]" />
+    <LogoMark className="h-[0.95em]" />
     {site.name}
   </span>
 )
 
-// A ridge line inside a ring, with a point marking the high point.
-export const LogoMark = (props: SVGProps<SVGSVGElement>) => (
-  <svg viewBox="0 0 32 32" fill="none" aria-hidden="true" {...props}>
-    <circle cx="16" cy="16" r="14" stroke="currentColor" strokeWidth="1.5" />
-    <path
-      d="M6.5 22 L12.5 14.5 L16 18.5 L20.5 11.5 L25.5 22"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
+// The brand's three mountains: in colour on light surfaces, ivory inside a `dark` band.
+export const LogoMark = ({ className }: { className?: string }) => (
+  <span className={cn("relative inline-flex shrink-0", className)}>
+    <Image
+      src={markColor}
+      alt=""
+      sizes="8rem"
+      className="h-full w-auto dark:hidden"
     />
-    <circle cx="20.5" cy="7.25" r="1.75" fill="currentColor" />
-  </svg>
+    <Image
+      src={markWhite}
+      alt=""
+      sizes="8rem"
+      className="hidden h-full w-auto dark:block"
+    />
+  </span>
+)
+
+// The full stacked lockup: mountains over HIGH POINT PSYCHIATRY.
+export const LogoFull = ({ className }: { className?: string }) => (
+  <span className={cn("inline-flex", className)}>
+    <Image
+      src={fullColor}
+      alt={site.name}
+      sizes="20rem"
+      className="h-full w-auto dark:hidden"
+    />
+    <Image
+      src={fullWhite}
+      alt={site.name}
+      sizes="20rem"
+      className="hidden h-full w-auto dark:block"
+    />
+  </span>
 )

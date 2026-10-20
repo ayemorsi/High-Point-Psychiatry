@@ -5,8 +5,9 @@ import type { SiteImage } from "@/lib/types"
 
 export const siteTitle = `${site.name} | ${site.tagline}`
 
+// The brand logo on ivory, for link previews in messages and social posts.
 export const ogImage = {
-  url: "/opengraph-image",
+  url: "/og-image.png",
   width: 1200,
   height: 630,
   alt: `${site.name}. ${site.tagline}`,

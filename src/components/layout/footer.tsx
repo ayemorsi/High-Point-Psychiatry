@@ -1,6 +1,6 @@
 import Link from "next/link"
 
-import { Logo } from "@/components/icons/logo"
+import { LogoFull } from "@/components/icons/logo"
 import { appointmentHref } from "@/components/layout/navbar"
 import { site } from "@/lib/site"
 import { externalLink } from "@/lib/utils"
@@ -41,7 +41,7 @@ export default function Footer() {
         <div className="grid gap-12 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-16">
           <div>
             <Link href="/" aria-label={`${site.name} home`}>
-              <Logo size="lg" />
+              <LogoFull className="h-20 md:h-24" />
             </Link>
             <p className="display-type mt-5 max-w-sm text-2xl leading-snug text-muted-foreground">
               {site.tagline}.
