@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react"
 import { CheckIcon } from "lucide-react"
 
+import HushForm from "@/components/sections/intake/hush-form"
 import { Button } from "@/components/ui/button"
 import {
   Field,
@@ -93,9 +94,23 @@ export default function ContactForm({ className }: ContactFormProps) {
             tabIndex={-1}
             className="mt-6 text-3xl outline-none"
           >
-            Thanks, {sent.name}. We have your message.
+            Thanks, {sent.name}. One last step.
           </h3>
           <p className="mt-2 text-muted-foreground">
+            We have your message. To get started as a new patient, request your
+            secure intake form below. We&apos;ve filled in{" "}
+            <span className="font-medium text-foreground">{sent.email}</span>,
+            so just click{" "}
+            <span className="font-medium text-foreground">Request form</span>{" "}
+            and we&apos;ll email you a private link.
+          </p>
+          <HushForm
+            formId="hppmi-intake-form"
+            email={sent.email}
+            className="min-h-64 pt-6"
+          />
+          <p className="mt-6 text-sm text-muted-foreground">
+            Already a patient, or just had a question? You can skip this.
             We&apos;ll reply to {sent.email} as soon as we can.
           </p>
           <Button
