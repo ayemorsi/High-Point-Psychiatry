@@ -12,7 +12,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
 import { Button } from "@/components/ui/button"
-import { brandImages } from "@/lib/images"
+import { photos } from "@/lib/images"
 import { site } from "@/lib/site"
 
 const facts = [
@@ -32,8 +32,8 @@ export default function AboutHero() {
           className="relative h-[56svh] min-h-80 lg:order-2 lg:h-auto"
         >
           <Image
-            src={brandImages.lifeLinen.src}
-            alt={brandImages.lifeLinen.alt}
+            src={photos.window.src}
+            alt={photos.window.alt}
             fill
             preload
             sizes="(min-width: 1024px) 50vw, 100vw"

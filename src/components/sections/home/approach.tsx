@@ -4,7 +4,7 @@ import Link from "next/link"
 import ParallaxPhoto from "@/components/elements/parallax-photo"
 import Reveal from "@/components/elements/reveal"
 import { Button } from "@/components/ui/button"
-import { brandImages } from "@/lib/images"
+import { photos } from "@/lib/images"
 
 const points = [
   "Unhurried visits, so there's room for your questions",
@@ -18,8 +18,8 @@ export default function Approach() {
       <Reveal className="media aspect-4/5">
         <ParallaxPhoto className="absolute inset-0">
           <Image
-            src={brandImages.lifeSilver.src}
-            alt={brandImages.lifeSilver.alt}
+            src={photos.armchair.src}
+            alt={photos.armchair.alt}
             fill
             sizes="(min-width: 768px) 45vw, 100vw"
             className="object-cover object-[50%_30%]"

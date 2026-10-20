@@ -1,4 +1,4 @@
-import { brandImages } from "@/lib/images"
+import { photos } from "@/lib/images"
 import type { SiteImage } from "@/lib/types"
 
 export type HeroStep = {
@@ -21,11 +21,6 @@ export type HeroStep = {
   }
 }
 
-const person = (name: string, alt: string): SiteImage => ({
-  src: `/images/people/${name}.jpg`,
-  alt,
-})
-
 // The four steps the home hero cycles through, from first message to ongoing care.
 export const heroSteps: HeroStep[] = [
   {
@@ -37,15 +32,9 @@ export const heroSteps: HeroStep[] = [
     body: "We reply to answer your questions and find a time.",
     tag: "We reply by email",
     scene: {
-      pearl: person("priya", "Woman with dark hair smiling softly at home"),
-      main: {
-        src: "/images/hero/telehealth.jpg",
-        alt: "Woman with curly hair smiling at her desk beside a laptop",
-      },
-      side: {
-        src: "/images/hero/calm.jpg",
-        alt: "Woman sitting calmly on the floor of a bright room",
-      },
+      pearl: photos.beardedMan,
+      main: photos.videoCall,
+      side: photos.meditation,
     },
   },
   {
@@ -57,9 +46,9 @@ export const heroSteps: HeroStep[] = [
     body: "Your history and goals, in one unhurried visit.",
     tag: "In person or telehealth",
     scene: {
-      pearl: person("helen", "Older woman with short white hair smiling"),
-      main: brandImages.lifeSilver,
-      side: person("dana", "Woman with long dark hair smiling warmly"),
+      pearl: photos.elderWoman,
+      main: photos.armchair,
+      side: photos.athlete,
     },
   },
   {
@@ -71,9 +60,9 @@ export const heroSteps: HeroStep[] = [
     body: "Every option explained clearly, and chosen with you.",
     tag: "Shared decisions",
     scene: {
-      pearl: person("chen", "Woman with shoulder-length dark hair smiling"),
-      main: person("beatriz", "Young woman smiling with her hand in her hair"),
-      side: brandImages.lifeLinen,
+      pearl: photos.youngMan,
+      main: photos.studying,
+      side: photos.window,
     },
   },
   {
@@ -85,9 +74,9 @@ export const heroSteps: HeroStep[] = [
     body: "Regular check-ins and medication management.",
     tag: "Steady support",
     scene: {
-      pearl: person("marisol", "Woman with long curly hair smiling"),
-      main: person("aaliyah", "Woman with natural hair laughing"),
-      side: person("ingrid", "Older woman with silver hair in a cream sweater"),
+      pearl: photos.longHair,
+      main: photos.waterside,
+      side: photos.darkSweater,
     },
   },
 ]
