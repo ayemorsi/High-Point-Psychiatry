@@ -22,7 +22,7 @@ export default function NotFoundPage() {
         The link is broken, or the page has moved.
       </p>
       <Button asChild className="mt-8">
-        <Link href="/">Back to the shop</Link>
+        <Link href="/">Back to home</Link>
       </Button>
     </main>
   )

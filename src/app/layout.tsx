@@ -20,10 +20,10 @@ export const metadata: Metadata = {
   description: site.description,
   keywords: [
     site.name,
-    "skincare",
-    "four-step skincare routine",
-    "fragrance-free skincare",
-    "refillable skincare",
+    "psychiatrist Michigan",
+    "psychiatric evaluation",
+    "medication management",
+    "mental health care Michigan",
   ],
   authors: [{ name: site.name, url: site.url }],
   creator: site.name,
@@ -50,7 +50,6 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    site: site.social.handle,
     images: [{ url: ogImage.url, alt: ogImage.alt }],
   },
 }

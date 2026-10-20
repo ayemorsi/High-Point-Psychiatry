@@ -5,14 +5,13 @@ import Image from "next/image"
 import Link from "next/link"
 import { AnimatePresence, motion, useInView } from "motion/react"
 
-import AddToBagButton from "@/components/elements/add-to-bag-button"
 import AutoplayToggle from "@/components/elements/autoplay-toggle"
-import Rating from "@/components/elements/rating"
+import { appointmentHref } from "@/components/layout/navbar"
 import { Button } from "@/components/ui/button"
-import { bestsellersHref } from "@/lib/shop-params"
+import { type HeroStep, heroSteps as cards } from "@/lib/hero-steps"
 import { site } from "@/lib/site"
-import type { ProductImage, StepCard } from "@/lib/types"
-import { cn, EASE_SOFT, formatPrice } from "@/lib/utils"
+import type { SiteImage } from "@/lib/types"
+import { cn, EASE_SOFT } from "@/lib/utils"
 
 // Pearls ride the .arc-field rings (centres at --arc-x, 56% down, band 31vw out): steps 01–02 on the left, 03–04 on the right.
 const rings = [
@@ -53,7 +52,7 @@ const crossfade = {
   transition: { duration: 0.22, ease: EASE_SOFT },
 }
 
-export default function Hero({ cards }: { cards: StepCard[] }) {
+export default function Hero() {
   const [active, setActive] = useState(0)
   const [paused, setPaused] = useState(false)
   const [playing, setPlaying] = useState(false)
@@ -62,7 +61,7 @@ export default function Hero({ cards }: { cards: StepCard[] }) {
   const inView = useInView(section)
   const current = cards[active]
 
-  // The routine starts playing once the entrance has settled.
+  // The steps start playing once the entrance has settled.
   useEffect(() => {
     const timer = window.setTimeout(() => setPlaying(true), 1800)
     return () => window.clearTimeout(timer)
@@ -96,53 +95,53 @@ export default function Hero({ cards }: { cards: StepCard[] }) {
       <div className="arc-field relative flex min-h-[max(calc(100svh-1.5rem),46rem)] flex-col overflow-hidden rounded-3xl bg-card [--arc-x:-14%]">
         <div className="container flex flex-1 flex-col items-center justify-center pt-24 pb-6 text-center">
           <h1 className="enter max-w-4xl text-5xl leading-none md:text-6xl lg:text-7xl 2xl:text-8xl">
-            Good skin in four steps.
+            Care that starts with listening.
           </h1>
 
           <div className="enter mt-5 flex min-h-6 items-start justify-center delay-75 md:min-h-7">
             <AnimatePresence mode="wait" initial={false}>
               <motion.p
-                key={current.step.id}
+                key={current.id}
                 {...crossfade}
                 className="max-w-xs text-muted-foreground md:max-w-none md:text-lg"
               >
-                <span className="figures">{current.step.number}</span>{" "}
+                <span className="figures">{current.number}</span>{" "}
                 <span className="font-medium text-foreground">
-                  {current.step.name}.
+                  {current.name}.
                 </span>{" "}
-                {current.step.job}
+                {current.line}
               </motion.p>
             </AnimatePresence>
           </div>
 
           <div className="enter mt-8 flex flex-wrap justify-center gap-3 delay-150">
             <Button asChild>
-              <Link href={bestsellersHref}>Shop bestsellers</Link>
+              <Link href={appointmentHref}>Request an appointment</Link>
             </Button>
             <Button asChild variant="secondary">
-              <Link href="/routine">Find my routine</Link>
+              <Link href="/#services">Our services</Link>
             </Button>
           </div>
 
           <p className="enter mt-6 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-xs text-muted-foreground delay-200">
-            <Rating value={site.rating.score} count={site.rating.count} />
+            <span>{site.tagline}</span>
             <span aria-hidden>·</span>
-            <span>
-              Free shipping over{" "}
-              {formatPrice(site.commerce.freeShippingThreshold)}
-            </span>
+            <span>In person and telehealth</span>
             <span aria-hidden className="hidden sm:inline">
               ·
             </span>
-            <span className="hidden sm:inline">
-              {site.commerce.returnsDays}-day returns
-            </span>
+            <a
+              href={site.email.href}
+              className="hidden underline underline-offset-4 sm:inline"
+            >
+              {site.email.display}
+            </a>
           </p>
 
           <div className="enter mt-8 flex items-center gap-4 delay-200 lg:hidden">
             <ul aria-label="Steps" {...hold} className="flex gap-4">
               {cards.map((card, index) => (
-                <li key={card.step.id}>
+                <li key={card.id}>
                   <Pearl {...pearlProps(index)} className="relative size-14" />
                 </li>
               ))}
@@ -166,7 +165,7 @@ export default function Hero({ cards }: { cards: StepCard[] }) {
 
             return (
               <li
-                key={card.step.id}
+                key={card.id}
                 style={vars}
                 className={cn(
                   "absolute top-[56%] size-0 rotate-(--theta) animate-orbit-in",
@@ -201,7 +200,7 @@ export default function Hero({ cards }: { cards: StepCard[] }) {
               cards={cards}
               settled={playing}
               active={(active + cards.length - 1) % cards.length}
-              pick={(card) => card.scene.skin}
+              pick={(card) => card.scene.main}
               sizes="8rem"
               decorative
             />
@@ -212,16 +211,16 @@ export default function Hero({ cards }: { cards: StepCard[] }) {
               cards={cards}
               settled={playing}
               active={active}
-              pick={(card) => card.scene.texture}
+              pick={(card) => card.scene.side}
               sizes="12rem"
             />
             <AnimatePresence mode="wait" initial={false}>
               <motion.span
-                key={current.step.id}
+                key={current.id}
                 {...crossfade}
                 className="photo-tag start-3 top-3"
               >
-                {current.product.keyIngredients[0]?.name}
+                {current.tag}
               </motion.span>
             </AnimatePresence>
           </SceneCard>
@@ -231,39 +230,36 @@ export default function Hero({ cards }: { cards: StepCard[] }) {
               cards={cards}
               settled={playing}
               active={active}
-              pick={(card) => card.scene.skin}
+              pick={(card) => card.scene.main}
               sizes="24rem"
               preload
             />
           </div>
 
           <div className="absolute inset-x-4 bottom-3 z-20 mx-auto max-w-80 md:hidden">
-            <BuyChip card={current} />
+            <StepChip step={current} />
           </div>
 
           <SceneCard className="z-5 -ms-8 h-[66%] bg-background delay-580">
             <AnimatePresence mode="wait" initial={false}>
               <motion.div
-                key={current.step.id}
+                key={current.id}
                 {...crossfade}
                 className="flex h-full flex-col p-4 ps-12 text-start"
               >
                 <p className="flex items-baseline gap-1.5 text-xs font-medium text-muted-foreground">
-                  <span className="figures">{current.step.number}</span>
-                  {current.step.name}
+                  <span className="figures">{current.number}</span>
+                  {current.name}
                 </p>
                 <p className="display-type mt-1 text-2xl leading-tight">
-                  {current.product.name}
+                  {current.title}
                 </p>
                 <p className="mt-1 text-sm text-muted-foreground">
-                  {current.product.benefit}
+                  {current.body}
                 </p>
-                <AddToBagButton
-                  product={current.product}
-                  size="sm"
-                  label="Add"
-                  className="mt-auto w-full"
-                />
+                <Button asChild size="sm" className="mt-auto w-full">
+                  <Link href={appointmentHref}>Get started</Link>
+                </Button>
               </motion.div>
             </AnimatePresence>
           </SceneCard>
@@ -273,7 +269,7 @@ export default function Hero({ cards }: { cards: StepCard[] }) {
               cards={cards}
               settled={playing}
               active={(active + 1) % cards.length}
-              pick={(card) => card.scene.skin}
+              pick={(card) => card.scene.main}
               sizes="8rem"
               decorative
             />
@@ -285,7 +281,7 @@ export default function Hero({ cards }: { cards: StepCard[] }) {
 }
 
 type PearlProps = {
-  card: StepCard
+  card: HeroStep
   isActive: boolean
   isPlaying: boolean
   onSelect: () => void
@@ -307,7 +303,7 @@ function Pearl({
     <button
       type="button"
       aria-pressed={isActive}
-      aria-label={`Step ${card.step.number}, ${card.step.name}`}
+      aria-label={`Step ${card.number}, ${card.name}`}
       onPointerEnter={(event) => {
         if (event.pointerType === "mouse") onSelect()
       }}
@@ -317,7 +313,7 @@ function Pearl({
     >
       <span className="relative block size-full overflow-hidden rounded-full bg-muted ring-4 ring-card transition-transform duration-500 ease-soft group-focus-visible:ring-ring group-aria-pressed:scale-110">
         <Image
-          src={card.scene.pack.src}
+          src={card.scene.pearl.src}
           alt=""
           fill
           sizes="7rem"
@@ -345,8 +341,8 @@ function Pearl({
       )}
       {labelled && (
         <span className="absolute top-full left-1/2 mt-4 flex -translate-x-1/2 items-baseline gap-1.5 text-xs font-medium whitespace-nowrap text-muted-foreground transition-colors duration-300 group-aria-pressed:text-foreground">
-          <span className="figures">{card.step.number}</span>
-          {card.step.name}
+          <span className="figures">{card.number}</span>
+          {card.name}
         </span>
       )}
     </button>
@@ -372,9 +368,9 @@ function SceneCard({ className, children }: SceneCardProps) {
 }
 
 type SceneImagesProps = {
-  cards: StepCard[]
+  cards: HeroStep[]
   active: number
-  pick: (card: StepCard) => ProductImage
+  pick: (card: HeroStep) => SiteImage
   sizes: string
   settled: boolean
   preload?: boolean
@@ -405,7 +401,7 @@ function SceneImages({
 
     return (
       <Image
-        key={card.step.id}
+        key={card.id}
         src={image.src}
         alt={index === active && !decorative ? image.alt : ""}
         fill
@@ -420,13 +416,13 @@ function SceneImages({
   })
 }
 
-function BuyChip({ card }: { card: StepCard }) {
+function StepChip({ step }: { step: HeroStep }) {
   return (
     <div className="flex items-center justify-between gap-3 rounded-full bg-background/90 py-1.5 ps-4 pe-1.5 text-start backdrop-blur-md">
-      <p className="min-w-0 truncate text-sm font-medium">
-        {card.product.name}
-      </p>
-      <AddToBagButton product={card.product} size="sm" label="Add" />
+      <p className="min-w-0 truncate text-sm font-medium">{step.title}</p>
+      <Button asChild size="sm">
+        <Link href={appointmentHref}>Get started</Link>
+      </Button>
     </div>
   )
 }

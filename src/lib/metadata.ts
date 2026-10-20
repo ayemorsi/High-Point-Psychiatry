@@ -1,25 +1,25 @@
 import type { Metadata } from "next"
 
 import { site } from "@/lib/site"
-import type { ProductImage } from "@/lib/types"
+import type { SiteImage } from "@/lib/types"
 
 export const siteTitle = `${site.name} | ${site.tagline}`
 
 export const ogImage = {
-  url: "/og-image.jpg",
+  url: "/opengraph-image",
   width: 1200,
   height: 630,
   alt: `${site.name}. ${site.tagline}`,
 }
 
-export const ogLocale = site.commerce.locale.replace("-", "_")
+export const ogLocale = site.locale.replace("-", "_")
 
 type PageMetadataOptions = {
   /** Leave out on the home page to use the site title. */
   title?: string
   description?: string
   path: string
-  image?: ProductImage
+  image?: SiteImage
   type?: "website" | "article"
 }
 
@@ -49,7 +49,6 @@ export function pageMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      site: site.social.handle,
       title: shareTitle,
       description,
       images,

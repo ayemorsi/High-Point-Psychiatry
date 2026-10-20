@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils"
 
 // The mark is sized in em, so it scales with the wordmark.
 const logoVariants = cva(
-  "display-type inline-flex items-center gap-[0.32em] leading-none",
+  "display-type inline-flex items-center gap-[0.32em] leading-none whitespace-nowrap",
   {
     variants: {
       size: {
@@ -33,17 +33,17 @@ export const Logo = ({
   </span>
 )
 
-// Three rings that share one edge and close on a pearl.
+// A ridge line inside a ring, with a point marking the high point.
 export const LogoMark = (props: SVGProps<SVGSVGElement>) => (
   <svg viewBox="0 0 32 32" fill="none" aria-hidden="true" {...props}>
     <circle cx="16" cy="16" r="14" stroke="currentColor" strokeWidth="1.5" />
-    <circle
-      cx="12.46"
-      cy="19.54"
-      r="9"
+    <path
+      d="M6.5 22 L12.5 14.5 L16 18.5 L20.5 11.5 L25.5 22"
       stroke="currentColor"
       strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
-    <circle cx="8.75" cy="23.25" r="4.5" fill="currentColor" />
+    <circle cx="20.5" cy="7.25" r="1.75" fill="currentColor" />
   </svg>
 )

@@ -246,14 +246,6 @@
   .hero-padding {
     @apply pt-28 pb-14 md:pt-36 md:pb-20 lg:pt-40 lg:pb-24;
   }
-  /* .product-row holds exactly four (home rails): two by two until desktop, never three plus an orphan. */
-  .product-grid,
-  .product-row {
-    @apply grid grid-cols-2 gap-x-3 gap-y-8 md:gap-x-5 md:gap-y-12 lg:grid-cols-4;
-  }
-  .product-grid {
-    @apply md:max-lg:grid-cols-3;
-  }
   .eyebrow {
     @apply inline-flex items-center gap-2 text-xs font-medium text-muted-foreground before:size-1 before:rounded-full before:bg-current;
   }
@@ -284,17 +276,13 @@
   .photo-tag {
     @apply absolute rounded-full bg-background/85 px-2.5 py-1 text-xs font-medium backdrop-blur-sm;
   }
-  /* Checkout form beside its order summary. */
-  .checkout-grid {
-    @apply grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,27rem)] lg:gap-16 xl:gap-24;
-  }
   .no-scrollbar {
     scrollbar-width: none;
   }
   .figures {
     font-variant-numeric: tabular-nums;
   }
-  /* A heading set in the shop's sans: "serif speaks, sans works". */
+  /* A heading set in the site's sans: "serif speaks, sans works". */
   .sans-heading {
     @apply font-text font-medium tracking-normal;
   }
@@ -379,7 +367,7 @@
         normal;
     }
   }
-  /* The brand's only ornament: one panel per page (hero, newsletter or empty bag). */
+  /* The brand's only ornament: soft rings behind a hero or call-to-action panel. */
   .arc-field {
     --arc-tone: color-mix(
       in oklab,

@@ -2,6 +2,7 @@ import Image from "next/image"
 import Link from "next/link"
 
 import ParallaxPhoto from "@/components/elements/parallax-photo"
+import { appointmentHref } from "@/components/layout/navbar"
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -12,26 +13,17 @@ import {
 } from "@/components/ui/breadcrumb"
 import { Button } from "@/components/ui/button"
 import { brandImages } from "@/lib/images"
-import { getProducts } from "@/lib/products"
 import { site } from "@/lib/site"
-import { routineSteps } from "@/lib/steps"
-import { formatCount, spell } from "@/lib/utils"
+
+const facts = [
+  { label: "Location", value: site.region },
+  { label: "Care", value: "Evaluation, medication and follow-up" },
+  { label: "Visits", value: "In person and telehealth" },
+  { label: "Contact", value: site.email.display },
+]
 
 // Text on shell beside a full-height photo, with a slot cut round the fixed nav pill.
-export default async function AboutHero() {
-  const facts = [
-    { label: "Founded", value: String(site.founded) },
-    { label: "Made in", value: site.origin },
-    {
-      label: "Products",
-      value: `${(await getProducts()).length}, each with one job`,
-    },
-    {
-      label: "Rated",
-      value: `${site.rating.score} stars from ${formatCount(site.rating.count)}+ reviews`,
-    },
-  ]
-
+export default function AboutHero() {
   return (
     <section className="p-2 [--panel-inset:0.5] md:p-3 md:[--panel-inset:0.75]">
       <div className="relative grid overflow-hidden rounded-3xl bg-card lg:min-h-[max(calc(100svh-1.5rem),44rem)] lg:grid-cols-2">
@@ -59,21 +51,23 @@ export default async function AboutHero() {
               </BreadcrumbItem>
               <BreadcrumbSeparator />
               <BreadcrumbItem>
-                <BreadcrumbPage>Our story</BreadcrumbPage>
+                <BreadcrumbPage>About</BreadcrumbPage>
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
 
           <div className="mt-10 lg:mt-auto">
             <h1 className="enter max-w-xl text-5xl leading-none delay-75 md:text-6xl lg:text-7xl">
-              Fewer products, each with one job.
+              Psychiatric care with room to breathe.
             </h1>
             <p className="enter mt-5 max-w-md text-muted-foreground delay-150 md:text-lg">
-              Four-step skincare, made by an esthetician in small batches.
+              High Point Psychiatry is a Michigan practice built on careful
+              listening, clear explanations and treatment plans made together
+              with patients.
             </p>
             <div className="enter mt-8 delay-200">
               <Button asChild>
-                <Link href="/shop">Shop the {spell(routineSteps.length)} steps</Link>
+                <Link href={appointmentHref}>Request an appointment</Link>
               </Button>
             </div>
           </div>
@@ -82,7 +76,7 @@ export default async function AboutHero() {
             {facts.map((fact) => (
               <div key={fact.label}>
                 <dt className="text-muted-foreground">{fact.label}</dt>
-                <dd className="figures mt-0.5 font-medium">{fact.value}</dd>
+                <dd className="mt-0.5 font-medium break-words">{fact.value}</dd>
               </div>
             ))}
           </dl>

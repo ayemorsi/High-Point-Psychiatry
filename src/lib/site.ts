@@ -1,42 +1,20 @@
 export const site = {
   name: "High Point Psychiatry",
   legalName: "High Point Psychiatry",
-  tagline: "Good skin is built in layers.",
+  tagline: "Psychiatric care in Michigan",
   description:
-    "Four-step skincare made in small batches in California. Each product has one job. Fragrance-free, refillable, and photographed without retouching.",
+    "High Point Psychiatry offers psychiatric evaluations, medication management and ongoing care in Michigan. Unhurried visits and a plan you build with your provider.",
   url: siteUrl(),
   email: {
     display: "user@hppmi.com",
     href: "mailto:user@hppmi.com",
   },
-  founded: 2019,
-  founder: { name: "Camille Ortega", firstName: "Camille", years: 12 },
-  city: "Michigan",
-  origin: "Michigan",
-  rating: { score: 4.8, count: 12400 },
-  storageKey: "hpp",
-  commerce: {
-    currency: "USD",
-    locale: "en-US",
-    freeShippingThreshold: 60,
-    returnsDays: 30,
-    welcomeDiscount: 10,
-    welcomeCode: "LAYERS10",
-    subscribeDiscount: 15,
-    subscribeInterval: "every 2 months",
-    setDiscount: 15,
-    shipping: [
-      { id: "standard", label: "Standard", days: [3, 5], price: 6 },
-      { id: "express", label: "Express", days: [1, 2], price: 15 },
-    ],
-    payments: ["Visa", "Mastercard", "Amex", "Apple Pay", "Shop Pay"],
-  },
-  social: {
-    handle: "@highpointpsychiatry",
-    followers: "86k",
-    instagram: "https://instagram.com",
-    tiktok: "https://tiktok.com",
-    pinterest: "https://pinterest.com",
+  region: "Michigan",
+  locale: "en-US",
+  // Shown wherever someone might be reaching out in an emergency.
+  crisis: {
+    line: "988",
+    href: "tel:988",
   },
 } as const
 
