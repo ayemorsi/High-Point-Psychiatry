@@ -1,40 +1,36 @@
-import type { ComponentProps } from "react"
 import Image from "next/image"
-import { cva, type VariantProps } from "class-variance-authority"
 
 import fullColor from "@/../public/images/brand/logo.png"
 import fullWhite from "@/../public/images/brand/logo-white.png"
 import markColor from "@/../public/images/brand/mark.png"
 import markWhite from "@/../public/images/brand/mark-white.png"
+import wordColor from "@/../public/images/brand/wordmark.png"
+import wordWhite from "@/../public/images/brand/wordmark-white.png"
 import { site } from "@/lib/site"
 import { cn } from "@/lib/utils"
 
-// The mark is sized in em, so it scales with the wordmark.
-const logoVariants = cva(
-  "display-type inline-flex items-center gap-[0.4em] leading-none whitespace-nowrap",
-  {
-    variants: {
-      size: {
-        sm: "text-xl",
-        default: "text-2xl",
-        lg: "text-4xl",
-        fluid: "text-xl md:text-2xl",
-      },
-    },
-    defaultVariants: {
-      size: "default",
-    },
-  }
-)
-
-export const Logo = ({
-  className,
-  size,
-  ...props
-}: ComponentProps<"span"> & VariantProps<typeof logoVariants>) => (
-  <span className={cn(logoVariants({ size, className }))} {...props}>
-    <LogoMark className="h-[0.95em]" />
-    {site.name}
+// A horizontal lockup for the menu: the mountains beside the logo's own HIGH POINT / PSYCHIATRY lettering, centred on one line.
+export const Logo = ({ className }: { className?: string }) => (
+  <span
+    className={cn("inline-flex h-9 items-center gap-2.5 md:gap-3", className)}
+  >
+    <LogoMark className="h-[58%]" />
+    <span className="relative inline-flex h-full shrink-0">
+      <Image
+        src={wordColor}
+        alt={site.name}
+        sizes="10rem"
+        priority
+        className="h-full w-auto max-w-none dark:hidden"
+      />
+      <Image
+        src={wordWhite}
+        alt={site.name}
+        sizes="10rem"
+        priority
+        className="hidden h-full w-auto max-w-none dark:block"
+      />
+    </span>
   </span>
 )
 
