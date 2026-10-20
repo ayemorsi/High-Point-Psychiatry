@@ -26,5 +26,5 @@ export default function HushForm({ formId }: { formId: string }) {
     return () => host.replaceChildren()
   }, [formId])
 
-  return <div ref={container} className="min-h-96" />
+  return <div ref={container} className="min-h-72 pt-10" />
 }
