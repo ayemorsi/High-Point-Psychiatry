@@ -14,7 +14,7 @@ import {
 import { site } from "@/lib/site"
 
 export const navLinks = [
-  { label: "Services", href: "/#services" },
+  { label: "Services", href: "/services" },
   { label: "What we treat", href: "/#conditions" },
   { label: "About", href: "/about" },
   { label: "FAQ", href: "/contact#faq" },

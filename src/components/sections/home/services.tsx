@@ -38,6 +38,7 @@ export default function Services() {
         <SectionHeading
           title="How we can help"
           lede="Psychiatric care built around you, from the first conversation onward."
+          action={{ label: "All services", href: "/services" }}
         />
       </Reveal>
       <Reveal delay={0.06} className="mt-10 md:mt-14">

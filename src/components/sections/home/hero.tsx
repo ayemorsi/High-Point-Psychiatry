@@ -119,7 +119,7 @@ export default function Hero() {
               <Link href={appointmentHref}>Request an appointment</Link>
             </Button>
             <Button asChild variant="secondary">
-              <Link href="/#services">Our services</Link>
+              <Link href="/services">Our services</Link>
             </Button>
           </div>
 
