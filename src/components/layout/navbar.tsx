@@ -13,11 +13,11 @@ import {
 } from "@/components/ui/sheet"
 import { site } from "@/lib/site"
 
+// Every menu item opens its own page; jump links to sections live in the footer.
 export const navLinks = [
   { label: "Services", href: "/services" },
-  { label: "What we treat", href: "/#conditions" },
   { label: "About", href: "/about" },
-  { label: "FAQ", href: "/contact#faq" },
+  { label: "Contact", href: "/contact" },
 ]
 
 export const appointmentHref = "/contact#contact"
@@ -73,25 +73,23 @@ export default function Navbar() {
               </Button>
             </SheetTrigger>
             <SheetContent side="right">
-              <SheetHeader>
+              <SheetHeader className="pe-14">
                 <SheetTitle className="sr-only">Menu</SheetTitle>
-                <Logo />
+                <Logo size="sm" />
               </SheetHeader>
               <ul className="flex flex-col px-4">
-                {[...navLinks, { label: "Contact", href: "/contact" }].map(
-                  (link) => (
-                    <li key={link.href} className="border-b">
-                      <SheetClose asChild>
-                        <Link
-                          href={link.href}
-                          className="display-type block py-4 text-2xl"
-                        >
-                          {link.label}
-                        </Link>
-                      </SheetClose>
-                    </li>
-                  )
-                )}
+                {navLinks.map((link) => (
+                  <li key={link.href} className="border-b">
+                    <SheetClose asChild>
+                      <Link
+                        href={link.href}
+                        className="display-type block py-4 text-2xl"
+                      >
+                        {link.label}
+                      </Link>
+                    </SheetClose>
+                  </li>
+                ))}
               </ul>
               <div className="mt-6 px-4">
                 <SheetClose asChild>
