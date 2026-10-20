@@ -25,7 +25,8 @@ function Bar() {
   return (
     <div
       className={cn(
-        "relative grid transition-[grid-template-rows,opacity] duration-300 ease-soft",
+        // Phones skip the bar: there is only room for the number, which the hero and footer already offer.
+        "relative grid transition-[grid-template-rows,opacity] duration-300 ease-soft max-sm:hidden",
         open
           ? "grid-rows-[1fr] opacity-100"
           : "pointer-events-none grid-rows-[0fr] opacity-0"
