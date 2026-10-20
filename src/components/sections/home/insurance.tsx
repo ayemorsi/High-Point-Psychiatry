@@ -15,6 +15,7 @@ import {
 import { Button } from "@/components/ui/button"
 import { featuredInsurers } from "@/lib/insurance"
 import { site } from "@/lib/site"
+import { cn } from "@/lib/utils"
 
 // Built on shadcnblocks marquee-fade-1: a looping strip of plans that fades out at both edges and pauses on hover.
 export default function InsuranceStrip() {
@@ -41,12 +42,16 @@ export default function InsuranceStrip() {
                   <Image
                     src={insurer.logo}
                     alt={insurer.name}
-                    width={160}
-                    height={48}
-                    className="h-10 w-auto object-contain md:h-12"
+                    width={200}
+                    height={40}
+                    unoptimized
+                    className={cn(
+                      "w-auto object-contain",
+                      insurer.compact ? "h-6 md:h-7" : "h-9 md:h-11"
+                    )}
                   />
                 ) : (
-                  <span className="display-type text-2xl whitespace-nowrap text-foreground/70 md:text-3xl">
+                  <span className="text-xl font-semibold tracking-tight whitespace-nowrap text-foreground/80 md:text-2xl">
                     {insurer.name}
                   </span>
                 )}
