@@ -18,6 +18,7 @@ export const navLinks = [
   { label: "What we treat", href: "/#conditions" },
   { label: "About", href: "/about" },
   { label: "FAQ", href: "/contact#faq" },
+  { label: "Intake form", href: "/intake" },
 ]
 
 export const appointmentHref = "/contact#contact"
