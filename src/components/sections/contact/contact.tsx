@@ -3,7 +3,7 @@ import Image from "next/image"
 import ParallaxPhoto from "@/components/elements/parallax-photo"
 import Reveal from "@/components/elements/reveal"
 import ContactForm from "@/components/sections/contact/contact-form"
-import { brandImages } from "@/lib/images"
+import { photos } from "@/lib/images"
 import { site } from "@/lib/site"
 
 export default function Contact() {
@@ -15,8 +15,8 @@ export default function Contact() {
       <Reveal className="media aspect-4/5 max-lg:hidden">
         <ParallaxPhoto className="absolute inset-0">
           <Image
-            src={brandImages.lifeLinen.src}
-            alt={brandImages.lifeLinen.alt}
+            src={photos.livingRoom.src}
+            alt={photos.livingRoom.alt}
             fill
             sizes="(min-width: 1024px) 45vw, 100vw"
             className="object-cover object-[50%_20%]"
