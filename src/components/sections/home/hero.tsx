@@ -125,16 +125,13 @@ export default function Hero() {
 
           <p className="enter mt-6 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-xs text-muted-foreground delay-200">
             <span>{site.tagline}</span>
-            <span aria-hidden>·</span>
-            <span>In person and telehealth</span>
             <span aria-hidden className="hidden sm:inline">
               ·
             </span>
-            <a
-              href={site.email.href}
-              className="hidden underline underline-offset-4 sm:inline"
-            >
-              {site.email.display}
+            <span className="hidden sm:inline">In person and telehealth</span>
+            <span aria-hidden>·</span>
+            <a href={site.phone.href} className="underline underline-offset-4">
+              Call {site.phone.display}
             </a>
           </p>
 

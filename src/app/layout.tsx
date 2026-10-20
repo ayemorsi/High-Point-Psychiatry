@@ -54,6 +54,25 @@ export const metadata: Metadata = {
   },
 }
 
+const clinicSchema = {
+  "@context": "https://schema.org",
+  "@type": "MedicalClinic",
+  name: site.name,
+  url: site.website,
+  telephone: site.phone.href.replace("tel:", ""),
+  faxNumber: site.fax.href.replace("tel:", ""),
+  email: site.email.display,
+  medicalSpecialty: "Psychiatric",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: site.address.street,
+    addressLocality: site.address.city,
+    addressRegion: site.address.state,
+    postalCode: site.address.zip,
+    addressCountry: site.address.country,
+  },
+}
+
 const newsreader = Newsreader({
   subsets: ["latin"],
   axes: ["opsz"],
@@ -79,6 +98,11 @@ export default function RootLayout({
         >
           Skip to content
         </a>
+        <script
+          type="application/ld+json"
+          // The practice's name, address and phone for search engines; built from site.ts, never user input.
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(clinicSchema) }}
+        />
         <NuqsAdapter>
           <MotionConfig reducedMotion="user">
             <TooltipProvider>{children}</TooltipProvider>

@@ -5,6 +5,7 @@ import Reveal from "@/components/elements/reveal"
 import ContactForm from "@/components/sections/contact/contact-form"
 import { photos } from "@/lib/images"
 import { site } from "@/lib/site"
+import { externalLink } from "@/lib/utils"
 
 export default function Contact() {
   return (
@@ -27,7 +28,8 @@ export default function Contact() {
       <Reveal delay={0.06}>
         <h2 className="text-4xl md:text-5xl">Write to us</h2>
         <p className="mt-3 max-w-md text-muted-foreground md:text-lg">
-          Ask a question or request an appointment. We&apos;ll reply by email.
+          Ask a question or request an appointment, or call us during office
+          hours.
         </p>
         <p className="mt-6 max-w-md rounded-2xl bg-card p-4 text-sm text-muted-foreground">
           <span className="font-medium text-foreground">
@@ -45,16 +47,47 @@ export default function Contact() {
 
         <ContactForm className="mt-8 md:mt-10" />
 
-        <p className="mt-8 text-sm text-muted-foreground">
-          Or email{" "}
-          <a
-            href={site.email.href}
-            className="text-foreground underline decoration-foreground/30 underline-offset-4 hover:decoration-foreground"
-          >
-            {site.email.display}
-          </a>
-          .
-        </p>
+        <dl className="mt-10 grid gap-x-6 gap-y-5 border-t pt-6 text-sm sm:grid-cols-2">
+          <div>
+            <dt className="text-muted-foreground">Phone</dt>
+            <dd className="mt-0.5 font-medium">
+              <a
+                href={site.phone.href}
+                className="underline decoration-foreground/30 underline-offset-4 hover:decoration-foreground"
+              >
+                {site.phone.display}
+              </a>
+            </dd>
+          </div>
+          <div>
+            <dt className="text-muted-foreground">Fax</dt>
+            <dd className="mt-0.5 font-medium">{site.fax.display}</dd>
+          </div>
+          <div>
+            <dt className="text-muted-foreground">Email</dt>
+            <dd className="mt-0.5 font-medium">
+              <a
+                href={site.email.href}
+                className="underline decoration-foreground/30 underline-offset-4 hover:decoration-foreground"
+              >
+                {site.email.display}
+              </a>
+            </dd>
+          </div>
+          <div>
+            <dt className="text-muted-foreground">Office</dt>
+            <dd className="mt-0.5 font-medium">
+              <a
+                href={site.address.mapHref}
+                {...externalLink(`${site.name} on Google Maps`)}
+                className="underline decoration-foreground/30 underline-offset-4 hover:decoration-foreground"
+              >
+                {site.address.street}, {site.address.city}, {site.address.state}{" "}
+                {site.address.zip}
+              </a>
+            </dd>
+          </div>
+        </dl>
       </Reveal>
     </section>
   )
