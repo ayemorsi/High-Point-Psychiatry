@@ -4,15 +4,11 @@ import Cta from "@/components/sections/home/cta"
 import ServiceFinder from "@/components/sections/services/finder"
 import ServiceList from "@/components/sections/services/list"
 import { pageMetadata } from "@/lib/metadata"
-import { services } from "@/lib/services"
-import { site } from "@/lib/site"
 
 export const metadata: Metadata = pageMetadata({
-  title: "Services",
-  description: `Psychiatric services at ${site.name}: ${services
-    .slice(0, 6)
-    .map((service) => service.name.toLowerCase())
-    .join(", ")} and more, in ${site.region}.`,
+  title: "Psychiatric Services in Flint, MI",
+  description:
+    "Psychiatric evaluations, medication management, telepsychiatry and care for anxiety, depression, ADHD, bipolar disorder, PTSD and more in Flint, MI and Genesee County.",
   path: "/services",
 })
 

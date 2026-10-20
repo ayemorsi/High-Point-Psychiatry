@@ -46,7 +46,7 @@ export default function Services() {
       <Reveal>
         <SectionHeading
           title="How we can help"
-          lede="Psychiatric care built around you, from the first conversation onward."
+          lede="Psychiatric care in Flint and across Genesee County, built around you from the first conversation onward."
           action={{ label: "All services", href: "/services" }}
         />
       </Reveal>

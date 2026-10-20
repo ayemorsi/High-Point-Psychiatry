@@ -63,6 +63,7 @@ const clinicSchema = {
   faxNumber: site.fax.href.replace("tel:", ""),
   email: site.email.display,
   medicalSpecialty: "Psychiatric",
+  areaServed: site.areaServed,
   openingHoursSpecification: site.hours.map((slot) => ({
     "@type": "OpeningHoursSpecification",
     dayOfWeek: slot.dayCodes,
