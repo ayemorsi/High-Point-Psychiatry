@@ -3,7 +3,6 @@ import { cache } from "react"
 import { listMdx, readFrontmatter, readMdx } from "@/lib/mdx"
 import { site } from "@/lib/site"
 import type { LegalDoc, LegalFrontmatter } from "@/lib/types"
-import { formatPrice } from "@/lib/utils"
 
 export function getLegalSlugs() {
   return listMdx("legal")
@@ -18,18 +17,14 @@ export const getLegalDoc = cache(
   }
 )
 
-// Values the legal MDX reads as {store.name}, {store.returnsDays} and so on, so the policies follow site.ts.
+// Values the legal MDX reads as {store.name}, {store.crisis.line} and so on, so the policies follow site.ts.
 export const legalScope = {
   store: {
     name: site.name,
     legalName: site.legalName,
-    origin: site.origin,
+    region: site.region,
     domain: new URL(site.url).host,
     email: site.email,
-    returnsDays: site.commerce.returnsDays,
-    freeShipping: formatPrice(site.commerce.freeShippingThreshold),
-    setDiscount: site.commerce.setDiscount,
-    welcomeDiscount: site.commerce.welcomeDiscount,
-    subscribeDiscount: site.commerce.subscribeDiscount,
+    crisis: site.crisis,
   },
 }

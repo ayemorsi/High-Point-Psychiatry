@@ -1,91 +1,65 @@
-import Image from "next/image"
-import { ArrowRightIcon } from "lucide-react"
+import {
+  CalendarCheckIcon,
+  ClipboardListIcon,
+  MonitorSmartphoneIcon,
+  PillIcon,
+} from "lucide-react"
 
-import Fact from "@/components/elements/fact"
 import Reveal from "@/components/elements/reveal"
 import SectionHeading from "@/components/elements/section-heading"
-import { Button } from "@/components/ui/button"
-import { brandImages, homeImages } from "@/lib/images"
-import { site } from "@/lib/site"
-import { formatPrice } from "@/lib/utils"
 
-// What happens after you press Add.
+const services = [
+  {
+    title: "Psychiatric evaluation",
+    body: "A thorough first visit to understand your history, symptoms and goals, and to reach a clear diagnosis.",
+    icon: ClipboardListIcon,
+  },
+  {
+    title: "Medication management",
+    body: "When medication can help, we explain the options, start carefully and adjust based on how you feel.",
+    icon: PillIcon,
+  },
+  {
+    title: "Ongoing follow-up",
+    body: "Regular check-ins to track progress, manage side effects and change the plan as your needs change.",
+    icon: CalendarCheckIcon,
+  },
+  {
+    title: "Telehealth visits",
+    body: "Secure video appointments from home, when a virtual visit is right for you.",
+    icon: MonitorSmartphoneIcon,
+  },
+]
+
 export default function Services() {
   return (
-    <section className="section-padding container">
+    <section id="services" className="section-padding container scroll-mt-24">
       <Reveal>
-        <SectionHeading title="What happens after you order" />
+        <SectionHeading
+          title="How we can help"
+          lede="Psychiatric care built around you, from the first conversation onward."
+        />
       </Reveal>
-
       <Reveal delay={0.06} className="mt-10 md:mt-14">
-        <ul className="grid grid-cols-2 gap-3 md:gap-4 lg:h-160 lg:grid-cols-12 lg:grid-rows-2">
-          <li className="group media col-span-2 aspect-4/5 md:aspect-3/2 lg:col-span-5 lg:row-span-2 lg:aspect-auto">
-            <Image
-              src={brandImages.portraitFreckles.src}
-              alt={brandImages.portraitFreckles.alt}
-              fill
-              sizes="(min-width: 1024px) 40vw, 100vw"
-              className="object-cover transition duration-700 ease-soft group-hover:scale-103"
-            />
-            <div className="absolute inset-x-3 bottom-3 rounded-2xl bg-background/85 p-5 backdrop-blur-md md:inset-x-4 md:bottom-4 md:p-6">
-              <h3 className="text-2xl md:text-3xl">
-                An esthetician answers every email.
+        <ul className="grid gap-3 sm:grid-cols-2 md:gap-4 lg:grid-cols-4">
+          {services.map((service, index) => (
+            <li
+              key={service.title}
+              className={
+                index === 1
+                  ? "dark flex flex-col rounded-2xl bg-background p-6 text-foreground md:p-8"
+                  : "flex flex-col rounded-2xl bg-card p-6 md:p-8"
+              }
+            >
+              <service.icon aria-hidden="true" className="size-6" />
+              <h3 className="mt-10 text-2xl md:mt-16 md:text-3xl">
+                {service.title}
               </h3>
-              <p className="mt-1 text-sm text-muted-foreground">
-                About your skin, an order or a refill.
+              <p className="mt-3 text-sm text-muted-foreground">
+                {service.body}
               </p>
-              <Button variant="secondary" asChild className="mt-5">
-                <a href={site.email.href}>
-                  Write to us
-                  <ArrowRightIcon data-icon="inline-end" />
-                </a>
-              </Button>
-            </div>
-          </li>
-
-          <li className="media col-span-2 grid grid-cols-2 lg:col-span-7">
-            <Fact
-              label="Free shipping on orders over"
-              figure={formatPrice(site.commerce.freeShippingThreshold)}
-              line={`Sent within a day from ${site.city}.`}
-            />
-            <div className="group relative overflow-hidden">
-              <Image
-                src={brandImages.productTube.src}
-                alt={brandImages.productTube.alt}
-                fill
-                sizes="(min-width: 1024px) 30vw, 50vw"
-                className="object-cover transition duration-700 ease-soft group-hover:scale-103"
-              />
-            </div>
-          </li>
-
-          <li className="dark flex rounded-2xl bg-background text-foreground lg:col-span-3">
-            <Fact
-              label="Free returns for"
-              figure={`${site.commerce.returnsDays}`}
-              unit="days"
-              line="Changed your mind? Opened bottles come back too."
-            />
-          </li>
-
-          <li className="group media flex lg:col-span-4">
-            <div className="absolute inset-y-0 end-0 w-3/4 mask-l-from-50%">
-              <Image
-                src={homeImages.textureCleanse.src}
-                alt=""
-                fill
-                sizes="(min-width: 1024px) 25vw, 40vw"
-                className="object-cover transition duration-700 ease-soft group-hover:scale-103"
-              />
-            </div>
-            <Fact
-              label="Subscribe and save"
-              figure={`${site.commerce.subscribeDiscount}%`}
-              line="On every delivery. Skip or cancel any time."
-              className="relative"
-            />
-          </li>
+            </li>
+          ))}
         </ul>
       </Reveal>
     </section>

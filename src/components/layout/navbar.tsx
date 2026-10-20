@@ -1,9 +1,7 @@
 import Link from "next/link"
-import { MenuIcon, UserIcon } from "lucide-react"
+import { MenuIcon } from "lucide-react"
 
 import { Logo } from "@/components/icons/logo"
-import BagDrawer from "@/components/layout/bag"
-import SearchDialog from "@/components/layout/search"
 import { Button } from "@/components/ui/button"
 import {
   Sheet,
@@ -13,25 +11,19 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
-import { getProducts } from "@/lib/products"
-import { bestsellersHref } from "@/lib/shop-params"
 import { site } from "@/lib/site"
-import { routineSteps } from "@/lib/steps"
 
-const links = [
-  { label: "Shop", href: "/shop" },
-  { label: "Bestsellers", href: bestsellersHref },
-  { label: "Find my routine", href: "/routine" },
-  { label: "Our story", href: "/about" },
+export const navLinks = [
+  { label: "Services", href: "/#services" },
+  { label: "What we treat", href: "/#conditions" },
+  { label: "About", href: "/about" },
+  { label: "FAQ", href: "/contact#faq" },
 ]
 
-const menuLinks = [...links, { label: "Account", href: "/account" }]
+export const appointmentHref = "/contact#contact"
 
-export default async function Navbar() {
-  const products = await getProducts()
-
+export default function Navbar() {
   return (
-    // Zero-height sticky: it rides under the banner, then pins to the top once the banner scrolls away.
     <header className="sticky top-0 z-50 flex h-0 items-start justify-center px-(--nav-inset-length)">
       <nav
         aria-label="Main"
@@ -47,7 +39,7 @@ export default async function Navbar() {
           </Link>
         </div>
         <ul className="hidden items-center gap-7 text-sm text-muted-foreground lg:flex">
-          {links.map((link) => (
+          {navLinks.map((link) => (
             <li key={link.href}>
               <Link
                 href={link.href}
@@ -59,20 +51,14 @@ export default async function Navbar() {
           ))}
         </ul>
         <div className="flex flex-1 items-center justify-end gap-1">
-          <SearchDialog products={products} />
           <Button
             asChild
-            variant="ghost"
-            size="icon-sm"
-            className="hidden sm:inline-flex"
+            variant="secondary"
+            size="sm"
+            className="max-sm:hidden"
           >
-            <Link href="/account" aria-label="Account">
-              <UserIcon />
-            </Link>
+            <Link href={appointmentHref}>Request an appointment</Link>
           </Button>
-          <BagDrawer
-            bestsellers={products.filter((product) => product.bestseller)}
-          />
           <Sheet>
             <SheetTrigger asChild>
               <Button
@@ -90,36 +76,28 @@ export default async function Navbar() {
                 <Logo />
               </SheetHeader>
               <ul className="flex flex-col px-4">
-                {menuLinks.map((link) => (
-                  <li key={link.href} className="border-b">
-                    <SheetClose asChild>
-                      <Link
-                        href={link.href}
-                        className="display-type block py-4 text-2xl"
-                      >
-                        {link.label}
-                      </Link>
-                    </SheetClose>
-                  </li>
-                ))}
+                {[...navLinks, { label: "Contact", href: "/contact" }].map(
+                  (link) => (
+                    <li key={link.href} className="border-b">
+                      <SheetClose asChild>
+                        <Link
+                          href={link.href}
+                          className="display-type block py-4 text-2xl"
+                        >
+                          {link.label}
+                        </Link>
+                      </SheetClose>
+                    </li>
+                  )
+                )}
               </ul>
-              <ul className="mt-6 grid grid-cols-2 gap-2 px-4">
-                {routineSteps.map((step) => (
-                  <li key={step.id}>
-                    <SheetClose asChild>
-                      <Link
-                        href={`/shop/${step.id}`}
-                        className="flex items-baseline gap-2 rounded-xl bg-muted px-4 py-3 text-sm font-medium"
-                      >
-                        <span className="figures text-muted-foreground">
-                          {step.number}
-                        </span>
-                        {step.name}
-                      </Link>
-                    </SheetClose>
-                  </li>
-                ))}
-              </ul>
+              <div className="mt-6 px-4">
+                <SheetClose asChild>
+                  <Button asChild className="w-full">
+                    <Link href={appointmentHref}>Request an appointment</Link>
+                  </Button>
+                </SheetClose>
+              </div>
             </SheetContent>
           </Sheet>
         </div>
