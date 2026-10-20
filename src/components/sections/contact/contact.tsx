@@ -87,6 +87,16 @@ export default function Contact() {
               </a>
             </dd>
           </div>
+          <div className="sm:col-span-2">
+            <dt className="text-muted-foreground">Hours</dt>
+            <dd className="mt-0.5 font-medium">
+              {site.hours.map((slot) => (
+                <span key={slot.days} className="block">
+                  {slot.days} {slot.time}
+                </span>
+              ))}
+            </dd>
+          </div>
         </dl>
       </Reveal>
     </section>
