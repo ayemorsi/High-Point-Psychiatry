@@ -182,7 +182,7 @@ export default function Turntable({
                 )}
               >
                 <Link
-                  href={`#${service.slug}`}
+                  href={`/services/${service.slug}`}
                   draggable={false}
                   tabIndex={on ? undefined : -1}
                   onFocus={(event) => bringToFront(event, angle)}

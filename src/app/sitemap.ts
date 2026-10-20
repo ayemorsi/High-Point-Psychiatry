@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next"
 
 import { getLegalSlugs } from "@/lib/legal"
+import { services } from "@/lib/services"
 import { site } from "@/lib/site"
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -9,6 +10,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   return [
     { url: site.url, priority: 1 },
     { url: `${site.url}/services`, priority: 0.9 },
+    ...services.map((service) => ({
+      url: `${site.url}/services/${service.slug}`,
+      priority: 0.8,
+    })),
     { url: `${site.url}/about`, priority: 0.8 },
     { url: `${site.url}/contact`, priority: 0.8 },
     { url: `${site.url}/intake`, priority: 0.7 },

@@ -117,7 +117,7 @@ export default function Services() {
                   </sup>
                 </button>
                 <Link
-                  href={`/services#${service.slug}`}
+                  href={`/services/${service.slug}`}
                   aria-label={`More about ${service.name}`}
                   className="group mt-1 grid size-11 shrink-0 place-items-center rounded-full border transition-colors duration-200 hover:bg-foreground hover:text-background focus-visible:ring-3 focus-visible:ring-ring focus-visible:outline-none md:size-14"
                 >
