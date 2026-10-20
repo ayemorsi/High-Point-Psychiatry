@@ -65,6 +65,14 @@ export default function Footer() {
                 </a>
               </p>
               <p>Fax {site.fax.display}</p>
+              <ul className="pt-2">
+                {site.hours.map((slot) => (
+                  <li key={slot.days}>
+                    <span className="text-foreground">{slot.days}</span>{" "}
+                    {slot.time}
+                  </li>
+                ))}
+              </ul>
               <p>
                 <a
                   href={site.email.href}

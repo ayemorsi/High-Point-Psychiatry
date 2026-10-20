@@ -27,8 +27,23 @@ export const site = {
       "https://maps.google.com/?q=1425+S+Graham+Rd+Flint+MI+48532+United+States",
   },
   website: "https://highpointpsychiatrymi.com",
-  /** Office hours for the info bar above the menu, e.g. { days: "Mon–Thu", time: "9:00 AM – 5:00 PM" }. Empty hides them. */
-  hours: [] as { days: string; time: string }[],
+  /** Office hours: days and time are shown on the site; dayCodes, opens and closes feed the search engine listing. */
+  hours: [
+    {
+      days: "Mon–Thu",
+      time: "9:00 AM – 5:00 PM",
+      dayCodes: ["Monday", "Tuesday", "Wednesday", "Thursday"],
+      opens: "09:00",
+      closes: "17:00",
+    },
+    {
+      days: "Fri",
+      time: "9:00 AM – 1:00 PM",
+      dayCodes: ["Friday"],
+      opens: "09:00",
+      closes: "13:00",
+    },
+  ],
   region: "Michigan",
   locale: "en-US",
   // Shown wherever someone might be reaching out in an emergency.
