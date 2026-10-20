@@ -33,7 +33,7 @@ function Bar() {
       aria-hidden={!open}
     >
       <div className="overflow-hidden">
-        <div className="container flex items-center gap-x-4 gap-y-1 py-2.5 pe-11 text-xs text-muted-foreground sm:gap-x-6 md:pe-14">
+        <div className="container flex items-center justify-center gap-x-3 gap-y-1 px-9 py-2.5 text-xs text-muted-foreground sm:justify-start sm:gap-x-6 sm:ps-4 sm:pe-12 md:ps-6 md:pe-14 lg:ps-10">
           <a
             href={phone.href}
             tabIndex={open ? undefined : -1}
