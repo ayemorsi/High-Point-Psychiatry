@@ -1,48 +1,23 @@
 "use client"
 
-import { useSyncExternalStore } from "react"
+import { useState } from "react"
+import { usePathname } from "next/navigation"
 import { ClockIcon, MapPinIcon, PhoneIcon, XIcon } from "lucide-react"
 
 import { site } from "@/lib/site"
 import { cn, externalLink } from "@/lib/utils"
 
-const STORAGE_KEY = "hpp:info-bar-dismissed"
-
-const listeners = new Set<() => void>()
-
-function readDismissed() {
-  try {
-    return window.localStorage.getItem(STORAGE_KEY) === "1"
-  } catch {
-    // Storage can be blocked; the bar just stays open.
-    return false
-  }
-}
-
-let dismissedThisVisit = false
-
-function subscribe(listener: () => void) {
-  listeners.add(listener)
-  return () => listeners.delete(listener)
-}
-
-// A slim strip above the menu with the phone, address and hours. Closing it is remembered on this device only.
+// A slim strip above the menu with the phone, address and hours. Closing it hides it on the current page only; it's back after a refresh or on the next page.
 export default function InfoBar() {
-  const dismissed = useSyncExternalStore(
-    subscribe,
-    () => dismissedThisVisit || readDismissed(),
-    () => false
-  )
-  const open = !dismissed
+  // A fresh bar for every page, so closing it never carries over.
+  return <Bar key={usePathname()} />
+}
+
+function Bar() {
+  const [open, setOpen] = useState(true)
 
   function close() {
-    dismissedThisVisit = true
-    try {
-      window.localStorage.setItem(STORAGE_KEY, "1")
-    } catch {
-      // Nothing to remember it in; it closes for this visit only.
-    }
-    listeners.forEach((listener) => listener())
+    setOpen(false)
   }
 
   const { address, phone, hours } = site
