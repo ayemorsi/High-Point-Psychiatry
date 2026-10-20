@@ -7,6 +7,9 @@ import AboutTeam from "@/components/sections/about/team"
 import Cta from "@/components/sections/home/cta"
 import { pageMetadata } from "@/lib/metadata"
 
+// The team section is hidden for now; set this to true to bring it back.
+const SHOW_TEAM = false
+
 export const metadata: Metadata = pageMetadata({
   title: "About Our Flint Psychiatry Practice",
   description:
@@ -18,7 +21,7 @@ export default function AboutPage() {
   return (
     <>
       <AboutHero />
-      <AboutTeam />
+      {SHOW_TEAM && <AboutTeam />}
       <AboutPrinciples />
       <AboutInsurance />
       <Cta />
