@@ -55,9 +55,8 @@ export default function Navbar() {
         <div className="flex flex-1 items-center justify-end gap-1">
           <Button
             asChild
-            variant="secondary"
             size="sm"
-            className="max-sm:hidden"
+            className="bg-accent text-accent-foreground hover:bg-accent/85 max-sm:hidden"
           >
             <Link href={intakeHref}>Become a patient</Link>
           </Button>

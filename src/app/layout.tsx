@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import { Host_Grotesk, Newsreader } from "next/font/google"
+import { Newsreader, Open_Sans } from "next/font/google"
 import { MotionConfig } from "motion/react"
 import { NuqsAdapter } from "nuqs/adapters/next/app"
 
@@ -85,9 +85,9 @@ const newsreader = Newsreader({
   variable: "--font-newsreader",
 })
 
-const hostGrotesk = Host_Grotesk({
+const openSans = Open_Sans({
   subsets: ["latin"],
-  variable: "--font-host-grotesk",
+  variable: "--font-open-sans",
 })
 
 export default function RootLayout({
@@ -96,7 +96,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={cn(newsreader.variable, hostGrotesk.variable)}>
+    <html lang="en" className={cn(newsreader.variable, openSans.variable)}>
       <body className="flex min-h-screen flex-col">
         <a
           href="#main-content"

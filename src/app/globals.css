@@ -15,7 +15,7 @@
   --text-weight: 400;
   --display-tracking: -0.022em;
   --font-display: var(--font-newsreader);
-  --font-text: var(--font-host-grotesk);
+  --font-text: var(--font-open-sans);
   --color-ring: var(--ring);
   --color-input: var(--input);
   --color-border: var(--border);
@@ -116,28 +116,28 @@
   }
 }
 
-/* Photos carry the color; the interface stays ivory and ink. */
+/* Sandstone's structure in the High Point brand colors: ivory and linen surfaces, navy ink, gold accent. */
 :root {
-  --background: oklch(0.982 0.008 98); /* ivory */
-  --foreground: oklch(0.185 0.006 60); /* ink */
-  --card: oklch(0.958 0.01 95); /* shell — cards, image wells, panels */
-  --card-foreground: oklch(0.185 0.006 60);
-  --popover: oklch(0.992 0.005 98); /* floats above the page */
-  --popover-foreground: oklch(0.185 0.006 60);
-  --primary: oklch(0.185 0.006 60); /* ink pill — the only buy color */
-  --primary-foreground: oklch(0.982 0.008 98);
-  --secondary: oklch(0.928 0.012 92); /* oat */
-  --secondary-foreground: oklch(0.185 0.006 60);
-  --muted: oklch(0.928 0.012 92); /* oat — chips, tracks, skeletons */
-  --muted-foreground: oklch(0.47 0.01 80); /* stone */
-  --accent: oklch(0.5 0.075 60); /* bronze — sale, low stock, nothing else */
-  --accent-foreground: oklch(0.982 0.008 98);
-  --success: oklch(0.5 0.06 150); /* moss — in stock, confirmations */
-  --success-foreground: oklch(0.982 0.008 98);
+  --background: oklch(0.965 0.01 87.5); /* ivory #f6f3ec */
+  --foreground: oklch(0.281 0.049 247); /* navy #132b40 */
+  --card: oklch(0.927 0.022 83.3); /* linen — cards, image wells, panels */
+  --card-foreground: oklch(0.281 0.049 247);
+  --popover: oklch(0.982 0.007 88.6); /* floats above the page */
+  --popover-foreground: oklch(0.281 0.049 247);
+  --primary: oklch(0.281 0.049 247); /* navy — buttons */
+  --primary-foreground: oklch(0.965 0.01 87.5);
+  --secondary: oklch(0.887 0.033 81); /* beige #e5d8c2 */
+  --secondary-foreground: oklch(0.281 0.049 247);
+  --muted: oklch(0.887 0.033 81); /* beige — chips, tracks, skeletons */
+  --muted-foreground: oklch(0.463 0.019 82.7); /* stone */
+  --accent: oklch(0.73 0.08 81.6); /* gold #c1a36d */
+  --accent-foreground: oklch(0.281 0.049 247);
+  --success: oklch(0.5 0.06 150); /* moss — confirmations */
+  --success-foreground: oklch(0.965 0.01 87.5);
   --destructive: oklch(0.55 0.19 27);
-  --border: oklch(0.185 0.006 60 / 12%);
-  --input: oklch(0.185 0.006 60 / 14%);
-  --ring: oklch(0.185 0.006 60);
+  --border: oklch(0.885 0.027 82.4); /* warm beige line */
+  --input: oklch(0.84 0.034 82);
+  --ring: oklch(0.611 0.071 65.8); /* brown #a17b55 — gold is too faint on ivory */
   --radius: 0.75rem;
 }
 
@@ -180,28 +180,28 @@
   --nav-inset-length: calc(var(--nav-inset) * 1rem);
 }
 
-/* Ink band — scoped with `dark` on the footer, the nav pill and statement bands. */
+/* Navy band — scoped with `dark` on the footer, the nav pill and statement bands, like the brand's white-on-navy logos. */
 .dark {
-  --background: oklch(0.185 0.006 60);
-  --foreground: oklch(0.965 0.008 98);
-  --card: oklch(0.235 0.006 60);
-  --card-foreground: oklch(0.965 0.008 98);
-  --popover: oklch(0.235 0.006 60);
-  --popover-foreground: oklch(0.965 0.008 98);
-  --primary: oklch(0.965 0.008 98);
-  --primary-foreground: oklch(0.185 0.006 60);
-  --secondary: oklch(0.285 0.006 60);
-  --secondary-foreground: oklch(0.965 0.008 98);
-  --muted: oklch(0.285 0.006 60);
-  --muted-foreground: oklch(0.74 0.01 90);
-  --accent: oklch(0.78 0.07 70);
-  --accent-foreground: oklch(0.185 0.006 60);
+  --background: oklch(0.281 0.049 247); /* navy #132b40 */
+  --foreground: oklch(0.965 0.01 87.5);
+  --card: oklch(0.339 0.06 247.7);
+  --card-foreground: oklch(0.965 0.01 87.5);
+  --popover: oklch(0.339 0.06 247.7);
+  --popover-foreground: oklch(0.965 0.01 87.5);
+  --primary: oklch(0.965 0.01 87.5);
+  --primary-foreground: oklch(0.281 0.049 247);
+  --secondary: oklch(0.383 0.057 241.2);
+  --secondary-foreground: oklch(0.965 0.01 87.5);
+  --muted: oklch(0.383 0.057 241.2);
+  --muted-foreground: oklch(0.809 0.019 245.4);
+  --accent: oklch(0.73 0.08 81.6); /* gold */
+  --accent-foreground: oklch(0.281 0.049 247);
   --success: oklch(0.76 0.09 150);
-  --success-foreground: oklch(0.185 0.006 60);
+  --success-foreground: oklch(0.281 0.049 247);
   --destructive: oklch(0.7 0.19 22);
-  --border: oklch(0.965 0.008 98 / 14%);
-  --input: oklch(0.965 0.008 98 / 18%);
-  --ring: oklch(0.965 0.008 98);
+  --border: oklch(0.965 0.01 87.5 / 14%);
+  --input: oklch(0.965 0.01 87.5 / 18%);
+  --ring: oklch(0.73 0.08 81.6);
 }
 
 @layer base {
@@ -247,7 +247,7 @@
     @apply pt-28 pb-14 md:pt-36 md:pb-20 lg:pt-40 lg:pb-24;
   }
   .eyebrow {
-    @apply inline-flex items-center gap-2 text-xs font-medium text-muted-foreground before:size-1 before:rounded-full before:bg-current;
+    @apply inline-flex items-center gap-2 text-xs font-medium text-muted-foreground before:size-1.5 before:rounded-full before:bg-accent;
   }
   /* CSS, not JS, so the entrance starts on first paint and stays smooth while the page hydrates. */
   .enter {
