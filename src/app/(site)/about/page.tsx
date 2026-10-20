@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 
 import AboutHero from "@/components/sections/about/hero"
 import AboutPrinciples from "@/components/sections/about/principles"
+import AboutTeam from "@/components/sections/about/team"
 import Cta from "@/components/sections/home/cta"
 import { pageMetadata } from "@/lib/metadata"
 import { site } from "@/lib/site"
@@ -17,6 +18,7 @@ export default function AboutPage() {
     <>
       <AboutHero />
       <AboutPrinciples />
+      <AboutTeam />
       <Cta />
     </>
   )
