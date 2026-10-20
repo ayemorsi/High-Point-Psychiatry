@@ -27,6 +27,8 @@ export const site = {
       "https://maps.google.com/?q=1425+S+Graham+Rd+Flint+MI+48532+United+States",
   },
   website: "https://highpointpsychiatrymi.com",
+  /** Office hours for the info bar above the menu, e.g. { days: "Mon–Thu", time: "9:00 AM – 5:00 PM" }. Empty hides them. */
+  hours: [] as { days: string; time: string }[],
   region: "Michigan",
   locale: "en-US",
   // Shown wherever someone might be reaching out in an emergency.
