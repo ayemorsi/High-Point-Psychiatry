@@ -13,7 +13,7 @@ const SHOW_TEAM = false
 export const metadata: Metadata = pageMetadata({
   title: "About Our Flint Psychiatry Practice",
   description:
-    "Meet High Point Psychiatry, a psychiatric practice in Flint, MI serving Genesee County, led by Ahmed Morsi, MSN, PMHNP-BC. See the insurance we accept.",
+    "Meet High Point Psychiatry, a psychiatric practice in Flint, MI serving Genesee County. See the insurance we accept.",
   path: "/about",
 })
 
