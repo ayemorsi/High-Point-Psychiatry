@@ -37,7 +37,7 @@ export default function Navbar() {
             aria-label={`${site.name} home`}
             className="flex items-center"
           >
-            <Logo size="sm" />
+            <Logo className="h-7 sm:h-8 md:h-9" />
           </Link>
         </div>
         <ul className="hidden items-center gap-7 text-sm text-muted-foreground lg:flex">
