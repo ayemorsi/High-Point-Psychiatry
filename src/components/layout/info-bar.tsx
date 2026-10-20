@@ -25,8 +25,7 @@ function Bar() {
   return (
     <div
       className={cn(
-        // Phones skip the bar: there is only room for the number, which the hero and footer already offer.
-        "relative grid transition-[grid-template-rows,opacity] duration-300 ease-soft max-sm:hidden",
+        "relative grid transition-[grid-template-rows,opacity] duration-300 ease-soft",
         open
           ? "grid-rows-[1fr] opacity-100"
           : "pointer-events-none grid-rows-[0fr] opacity-0"
@@ -34,7 +33,7 @@ function Bar() {
       aria-hidden={!open}
     >
       <div className="overflow-hidden">
-        <div className="container flex items-center gap-x-6 gap-y-1 py-2.5 pe-12 text-xs text-muted-foreground md:pe-14">
+        <div className="container flex items-center gap-x-4 gap-y-1 py-2.5 pe-11 text-xs text-muted-foreground sm:gap-x-6 md:pe-14">
           <a
             href={phone.href}
             tabIndex={open ? undefined : -1}
@@ -52,11 +51,14 @@ function Bar() {
             href={address.mapHref}
             tabIndex={open ? undefined : -1}
             {...externalLink(`${site.name} on Google Maps`)}
-            className="inline-flex min-w-0 items-center gap-1.5 transition-colors duration-200 hover:text-foreground max-sm:hidden"
+            className="inline-flex min-w-0 items-center gap-1.5 transition-colors duration-200 hover:text-foreground"
           >
             <MapPinIcon aria-hidden="true" className="size-3.5 shrink-0" />
             <span className="truncate underline decoration-foreground/20 underline-offset-4">
-              {address.street}, {address.city}, {address.state} {address.zip}
+              {address.street}, {address.city}
+              <span className="max-sm:hidden">
+                , {address.state} {address.zip}
+              </span>
             </span>
           </a>
           {hours.length > 0 && (
