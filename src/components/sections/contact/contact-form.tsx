@@ -1,9 +1,10 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import { CheckIcon, CopyIcon } from "lucide-react"
+import Link from "next/link"
+import { ArrowRightIcon, CheckIcon } from "lucide-react"
 
-import HushForm from "@/components/sections/intake/hush-form"
+import { intakeHref } from "@/components/layout/navbar"
 import { Button } from "@/components/ui/button"
 import {
   Field,
@@ -17,7 +18,6 @@ import { Spinner } from "@/components/ui/spinner"
 import { Textarea } from "@/components/ui/textarea"
 import { sendMessage } from "@/lib/actions"
 import { site } from "@/lib/site"
-import { cn } from "@/lib/utils"
 
 type FieldName = "name" | "email" | "phone" | "message"
 
@@ -95,16 +95,18 @@ export default function ContactForm({ className }: ContactFormProps) {
             tabIndex={-1}
             className="mt-6 text-3xl outline-none"
           >
-            Thanks, {sent.name}. One last step.
+            Thanks, {sent.name}. We have your message.
           </h3>
           <p className="mt-2 text-muted-foreground">
-            We have your message. To get started as a new patient, request your
-            secure intake form: enter your email in the box below and click{" "}
-            <span className="font-medium text-foreground">Request form</span>.
-            We&apos;ll email you a private link.
+            New patient? Save time at your first visit by filling in your secure
+            intake form now. It only takes a few minutes.
           </p>
-          <CopyEmail email={sent.email} className="mt-5" />
-          <HushForm formId="hppmi-intake-form" className="min-h-64 pt-6" />
+          <Button asChild className="mt-6">
+            <Link href={intakeHref}>
+              Start your intake form
+              <ArrowRightIcon data-icon="inline-end" />
+            </Link>
+          </Button>
           <p className="mt-6 text-sm text-muted-foreground">
             Already a patient, or just had a question? You can skip this.
             We&apos;ll reply to {sent.email} as soon as we can.
@@ -204,48 +206,5 @@ export default function ContactForm({ className }: ContactFormProps) {
         </div>
       </FieldGroup>
     </form>
-  )
-}
-
-// The intake request runs in HushForms' own secure frame, which the page can't type into, so the email is one tap away instead.
-function CopyEmail({
-  email,
-  className,
-}: {
-  email: string
-  className?: string
-}) {
-  const [copied, setCopied] = useState(false)
-
-  async function copy() {
-    try {
-      await navigator.clipboard.writeText(email)
-      setCopied(true)
-      window.setTimeout(() => setCopied(false), 2000)
-    } catch {
-      // Clipboard can be blocked; the address is on screen to type instead.
-    }
-  }
-
-  return (
-    <div
-      className={cn(
-        "flex items-center justify-between gap-3 rounded-full border bg-background py-1.5 ps-4 pe-1.5",
-        className
-      )}
-    >
-      <span className="min-w-0 truncate text-sm font-medium">{email}</span>
-      <Button type="button" size="sm" variant="secondary" onClick={copy}>
-        {copied ? (
-          <CheckIcon data-icon="inline-start" />
-        ) : (
-          <CopyIcon data-icon="inline-start" />
-        )}
-        {copied ? "Copied" : "Copy email"}
-      </Button>
-      <span aria-live="polite" className="sr-only">
-        {copied ? "Email copied" : ""}
-      </span>
-    </div>
   )
 }
