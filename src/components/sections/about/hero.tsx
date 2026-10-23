@@ -1,8 +1,8 @@
-import Image from "next/image"
 import Link from "next/link"
 
 import ParallaxPhoto from "@/components/elements/parallax-photo"
 import { appointmentHref } from "@/components/layout/navbar"
+import Hero126 from "@/components/shadcnblocks/hero126"
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -12,7 +12,6 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
 import { Button } from "@/components/ui/button"
-import { photos } from "@/lib/images"
 import { site } from "@/lib/site"
 import { externalLink } from "@/lib/utils"
 
@@ -48,7 +47,7 @@ const facts: { label: string; value: React.ReactNode }[] = [
   },
 ]
 
-// Text on shell beside a full-height photo, with a slot cut round the fixed nav pill.
+// Text on shell beside a full-height video of the office, with a slot cut round the fixed nav pill.
 export default function AboutHero() {
   return (
     <section className="p-2 [--panel-inset:0.5] md:p-3 md:[--panel-inset:0.75]">
@@ -57,13 +56,12 @@ export default function AboutHero() {
           hero
           className="relative h-[56svh] min-h-80 lg:order-2 lg:h-auto"
         >
-          <Image
-            src={photos.window.src}
-            alt={photos.window.alt}
-            fill
-            preload
-            sizes="(min-width: 1024px) 50vw, 100vw"
-            className="animate-settle object-cover object-[50%_10%] lg:object-center"
+          <Hero126
+            src="/videos/building"
+            poster="/videos/building.jpg"
+            label="Our office building on S Graham Road in Flint, with the High Point Psychiatry sign out front"
+            className="absolute inset-0"
+            videoClassName="animate-settle"
           />
         </ParallaxPhoto>
 
