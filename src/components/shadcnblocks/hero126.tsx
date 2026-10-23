@@ -18,6 +18,7 @@ type Hero126Props = {
   label: string
   className?: string
   videoClassName?: string
+  controlClassName?: string
 }
 
 // Hero126's looping video stage with its play-pause ring. It plays only on screen, never for reduced motion, and a pause stays paused.
@@ -27,6 +28,7 @@ export default function Hero126({
   label,
   className,
   videoClassName,
+  controlClassName,
 }: Hero126Props) {
   const reduceMotion = useReducedMotion()
   const videoRef = useRef<HTMLVideoElement>(null)
@@ -93,7 +95,12 @@ export default function Hero126({
         <source src={`${src}.mp4`} type="video/mp4" />
         <source src={`${src}.webm`} type="video/webm" />
       </video>
-      <div className="absolute right-4 bottom-4 z-10 size-12 md:right-6 md:bottom-6 md:size-14">
+      <div
+        className={cn(
+          "absolute right-4 bottom-4 z-10 size-12 md:right-6 md:bottom-6 md:size-14",
+          controlClassName
+        )}
+      >
         <svg
           viewBox="0 0 100 100"
           aria-hidden="true"
