@@ -63,6 +63,10 @@ export const site = {
     line: "988",
     href: "tel:988",
   },
+  // Hushmail secure form IDs (Hushmail > Embed secure form). Keep them free of e-signature fields so they fill in on the page.
+  secureForms: {
+    intake: "user-request-an-appointment-behavioral-health",
+  },
 } as const
 
 // Canonical links, the sitemap and share cards build on this. Vercel fills in the production domain; set NEXT_PUBLIC_SITE_URL anywhere else.
