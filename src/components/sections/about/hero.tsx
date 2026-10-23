@@ -61,7 +61,8 @@ export default function AboutHero() {
             poster="/videos/building.jpg"
             label="Our office building on S Graham Road in Flint, with the High Point Psychiatry sign out front"
             className="absolute inset-0"
-            videoClassName="animate-settle"
+            videoClassName="animate-settle object-left"
+            controlClassName="bottom-[calc(var(--drift)+1rem)] md:bottom-[calc(var(--drift)+1.5rem)]"
           />
         </ParallaxPhoto>
 
